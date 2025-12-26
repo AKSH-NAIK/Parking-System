@@ -18,13 +18,8 @@ ForeColor="Red">
 </asp:RequiredFieldValidator>
 <br /><br />
             Password:
-<asp:TextBox ID="txtPassword" runat="server"
-TextMode="Password"></asp:TextBox>
-<asp:RequiredFieldValidator ID="rfvPassword" runat="server"
-ControlToValidate="txtPassword"
-ErrorMessage="Password is required"
-ForeColor="Red">
-</asp:RequiredFieldValidator>
+<asp:TextBox ID="txtPassword" runat="server"TextMode="Password"></asp:TextBox>
+<asp:RequiredFieldValidator ID="rfvPassword" runat="server"ControlToValidate="txtPassword"ErrorMessage="Password is required"ForeColor="Red"></asp:RequiredFieldValidator>
 <br /><br />
         </div>
     </form>
