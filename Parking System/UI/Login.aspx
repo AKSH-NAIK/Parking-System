@@ -1,27 +1,24 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Parking_System.Login" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="false" %>
+<!--Login Page for Staff Members-->
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
+<html>
+<head>
+    <title>Staff Login</title>
+    <link rel="stylesheet" href="/Content/site.css" />
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            Staff ID:
-<asp:TextBox ID="txtName" runat="server"></asp:TextBox>
-<asp:RequiredFieldValidator ID="rfvName" runat="server"
-ControlToValidate="txtName"
-ErrorMessage="Name is required"
-ForeColor="Red">
-</asp:RequiredFieldValidator>
-<br /><br />
-            Password:
-<asp:TextBox ID="txtPassword" runat="server"TextMode="Password"></asp:TextBox>
-<asp:RequiredFieldValidator ID="rfvPassword" runat="server"ControlToValidate="txtPassword"ErrorMessage="Password is required"ForeColor="Red"></asp:RequiredFieldValidator>
-<br /><br />
-        </div>
-    </form>
+
+    <div>
+        <label>Staff ID</label><br />
+        <input type="text" id="txtStaffId" /><br /><br />
+
+        <label>Password</label><br />
+        <input type="password" id="txtPassword" /><br /><br />
+
+        <button type="button" id="btnLogin">Login</button>
+    </div>
+
+    <script src="/Scripts/auth.js"></script>
+
 </body>
 </html>
