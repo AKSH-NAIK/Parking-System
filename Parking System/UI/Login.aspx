@@ -1,10 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="false" %>
-<!--Login Page for Staff Members-->
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Staff Login</title>
-    <link rel="stylesheet" href="/Content/site.css" />
+    <link rel="stylesheet" href="/Styles/site.css" />
 </head>
 <body>
 
