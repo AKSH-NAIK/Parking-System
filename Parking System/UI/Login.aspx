@@ -3,22 +3,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Staff Login</title>
-    <link rel="stylesheet" href="/Styles/site.css" />
+
+    <!-- Resolve the stylesheet path so it works when app is in a virtual directory -->
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Styles/site.css") %>" />
 </head>
 <body>
 
-    <div>
-        <label>Staff ID</label><br />
-        <input type="text" id="txtStaffId" /><br /><br />
+    <div class="login-box" role="main" aria-labelledby="loginHeading">
+        <h2 id="loginHeading">Staff Login</h2>
 
-        <label>Password</label><br />
-        <input type="password" id="txtPassword" /><br /><br />
+        <label for="txtStaffId">Staff ID</label>
+        <input type="text" id="txtStaffId" name="txtStaffId" placeholder="Enter your staff ID" />
+
+        <label for="txtPassword">Password</label>
+        <input type="password" id="txtPassword" name="txtPassword" placeholder="Enter your password" />
 
         <button type="button" id="btnLogin">Login</button>
     </div>
 
-    <script src="/Scripts/auth.js"></script>
+    <!-- Resolve script path as well -->
+    <script src="<%= ResolveUrl("~/Scripts/auth.js") %>"></script>
 
 </body>
 </html>
