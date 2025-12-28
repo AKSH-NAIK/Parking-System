@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="false" %>
+﻿<!-- Staff Login Page for Parking System Application -->
+<%@ Page Language="C#" AutoEventWireup="false" %>
 
 <!DOCTYPE html>
 <html>
@@ -7,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Staff Login</title>
 
-    <!-- Resolve the stylesheet path so it works when app is in a virtual directory -->
+    
     <link rel="stylesheet" href="<%= ResolveUrl("~/Styles/site.css") %>" />
 </head>
 <body>
@@ -25,7 +26,7 @@
     </div>
 
     <!-- Resolve script path as well -->
-    <script src="<%= ResolveUrl("~/Scripts/auth.js") %>"></script>
+    <script src="<%= ResolveUrl("~/Scripts/Auth.js") %>"></script>
 
 </body>
 </html>
