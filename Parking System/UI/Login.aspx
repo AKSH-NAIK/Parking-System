@@ -24,8 +24,9 @@
 
         <button type="button" id="btnLogin">Login</button>
     </div>
+     
+ <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
 
-    <!-- Resolve script path as well -->
     <script src="<%= ResolveUrl("~/Scripts/Auth.js") %>"></script>
 
 </body>

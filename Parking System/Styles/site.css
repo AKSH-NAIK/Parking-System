@@ -12,6 +12,8 @@
     --transition-fast: 150ms;
     --text: #0f1724;
     --success: #10b981;
+    --danger: #ef4444;
+    --toast-bg: #0f1724;
 }
 
 * {
@@ -164,6 +166,94 @@ body {
     border-radius: 999px;
     font-size: 12px;
     font-weight: 600;
+}
+
+/* Toast styles */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 11000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none; /* allow clicks through when no toast */
+}
+
+.toast {
+    min-width: 240px;
+    max-width: 380px;
+    background: rgba(15, 23, 36, 0.95);
+    color: #ffffff;
+    padding: 12px 14px;
+    border-radius: 10px;
+    box-shadow: 0 8px 28px rgba(2, 6, 23, 0.32);
+    transform: translateY(-8px) scale(0.98);
+    opacity: 0;
+    transition: transform 220ms ease, opacity 220ms ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    pointer-events: auto;
+    font-size: 14px;
+}
+
+/* Visible state */
+.toast--visible {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* Variants */
+.toast--success {
+    background: linear-gradient(90deg, rgba(16,185,129,0.98), rgba(6,182,129,0.92));
+    color: #062516;
+}
+
+.toast--error {
+    background: linear-gradient(90deg, rgba(239,68,68,0.98), rgba(220,38,38,0.92));
+    color: #fff7f6;
+}
+
+.toast__content {
+    flex: 1 1 auto;
+    line-height: 1.2;
+}
+
+/* Small icon placeholders (keeps layout consistent) */
+.toast::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    flex: 0 0 12px;
+}
+
+/* Icon colors */
+.toast--success::before {
+    background: rgba(255,255,255,0.85);
+    box-shadow: inset 0 0 0 4px rgba(16, 185, 129, 0.12);
+}
+
+.toast--error::before {
+    background: rgba(255,255,255,0.9);
+    box-shadow: inset 0 0 0 4px rgba(239, 68, 68, 0.12);
+}
+
+/* Responsive adjustments */
+@media (max-width: 520px) {
+    #toast-container {
+        left: 12px;
+        right: 12px;
+        top: 12px;
+        align-items: center;
+    }
+
+    .toast {
+        width: 100%;
+        max-width: unset;
+    }
 }
 
 /* Responsive tweaks */
