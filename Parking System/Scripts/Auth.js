@@ -1,83 +1,72 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
+﻿// Auth.js - login wiring with robust API path and safe toast fallback
+console.info("Auth.js loaded");
 
-    const btnLogin = document.getElementById("btnLogin");
-    const toastContainer = document.getElementById("toast-container");
+document.addEventListener("DOMContentLoaded", function () {
 
-    function showToast(message, type = "info", duration = 3500) {
-        if (!toastContainer) return;
-
-        const toast = document.createElement("div");
-        toast.className = `toast toast--${type}`;
-        toast.setAttribute("role", "status");
-        toast.setAttribute("aria-live", "polite");
-        toast.innerHTML = `<div class="toast__content">${message}</div>`;
-
-        toastContainer.appendChild(toast);
-
-        // Force reflow so animation runs
-        // eslint-disable-next-line no-unused-expressions
-        toast.offsetHeight;
-
-        toast.classList.add("toast--visible");
-
-        // Remove after duration
-        const hideDelay = Math.max(800, duration - 300);
-        setTimeout(() => toast.classList.remove("toast--visible"), hideDelay);
-
-        // Remove from DOM after animation completes
-        setTimeout(() => {
-            if (toast.parentNode) toast.parentNode.removeChild(toast);
-        }, duration + 200);
+    const btn = document.getElementById("btnLogin");
+    if (!btn) {
+        console.warn("Auth.js: login button (#btnLogin) not found on the page.");
+        return;
     }
 
-    btnLogin.addEventListener("click", function () {
+    // Safe showToast fallback so missing toast implementation won't break login
+    const _showToast = window.showToast || function (msg, type) {
+        // simple non-blocking fallback
+        console[type === "error" ? "warn" : "log"]("Toast:", msg);
+    };
 
-        const staffId = document.getElementById("txtStaffId").value.trim();
-        const password = document.getElementById("txtPassword").value.trim();
+    btn.addEventListener("click", function () {
 
-        // Basic validation
-        if (staffId === "" || password === "") {
-            showToast("Please enter Staff ID and Password", "error");
+        const staffId = (document.getElementById("txtStaffId") || {}).value.trim() || "";
+        const password = (document.getElementById("txtPassword") || {}).value.trim() || "";
+
+        if (!staffId || !password) {
+            _showToast("Please enter Staff ID and Password", "error");
             return;
         }
 
-        // Disable button while request is in flight
-        btnLogin.disabled = true;
+        btn.disabled = true;
 
-        // Send login request to backend
-        fetch("/Api/Auth.ashx", {
+        // Use server-provided URL if available; otherwise a safe default. This avoids "~/" in client code.
+        const apiUrl = window.__authApiUrl || "/API/auth.ashx";
+        console.info("Auth.js: calling API at", apiUrl);
+
+        // Build form body as URLSearchParams and let the browser set the Content-Type header.
+        const payload = {
+            staffId: staffId,
+            passCode: password,   // handler expects passCode
+            password: password    // harmless extra field
+        };
+        console.info("Auth.js: payload", payload);
+
+        const body = new URLSearchParams(payload);
+        console.log("Sending login request:", staffId, password);
+
+
+        fetch(apiUrl, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                staffId: staffId,
-                password: password
-            })
+            body: body
         })
-            .then(response => {
-                btnLogin.disabled = false;
-                return response.json();
-            })
-            .then(data => {
-
-                if (data.success) {
-                    // Login successful: show toast then redirect
-                    showToast(data.message || "Login successful", "success", 900);
-                    setTimeout(() => {
-                        window.location.href = "/Pages/Dashboard.aspx";
-                    }, 700);
-                } else {
-                    // Login failed
-                    showToast(data.message || "Invalid credentials", "error");
-                }
-
-            })
-            .catch(error => {
-                console.error("Login error:", error);
-                btnLogin.disabled = false;
-                showToast("Something went wrong. Please try again.", "error");
-            });
+        .then(res => {
+            btn.disabled = false;
+            if (!res.ok) {
+                throw new Error("Network response was not ok: " + res.status);
+            }
+            return res.json();
+        })
+        .then(data => {
+            if (data && data.success) {
+                _showToast(data.message || "Login successful", "success");
+                setTimeout(() => window.location.href = "/Dashboard.aspx", 600);
+            } else {
+                _showToast((data && data.message) || "Login failed", "error");
+            }
+        })
+        .catch(err => {
+            console.error("Auth.js fetch error:", err);
+            btn.disabled = false;
+            _showToast("Server error. Please try again.", "error");
+        });
 
     });
 
