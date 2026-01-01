@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Staff Login</title>
 
-    
     <link rel="stylesheet" href="<%= ResolveUrl("~/Styles/site.css") %>" />
 </head>
 <body>
@@ -23,9 +22,16 @@
         <input type="password" id="txtPassword" name="txtPassword" placeholder="Enter your password" />
 
         <button type="button" id="btnLogin">Login</button>
+
+        <div class="demo-credentials" aria-hidden="true">
+            <p class="demo-title">Demo Credentials:</p>
+            <p class="demo-line"><strong>Staff ID:</strong>STF001 <strong>Password:</strong> admin123</p>
+            <p class="demo-line"><strong>Staff ID:</strong>STF002 <strong>Password:</strong> staff123</p>
+        
+        </div>
     </div>
-     
- <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
 
     <script src="<%= ResolveUrl("~/Scripts/Auth.js") %>"></script>
 
