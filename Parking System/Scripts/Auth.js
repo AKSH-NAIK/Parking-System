@@ -47,26 +47,29 @@ document.addEventListener("DOMContentLoaded", function () {
             method: "POST",
             body: body
         })
-        .then(res => {
-            btn.disabled = false;
-            if (!res.ok) {
-                throw new Error("Network response was not ok: " + res.status);
-            }
-            return res.json();
-        })
-        .then(data => {
-            if (data && data.success) {
-                _showToast(data.message || "Login successful", "success");
-                setTimeout(() => window.location.href = "/Dashboard.aspx", 600);
-            } else {
-                _showToast((data && data.message) || "Login failed", "error");
-            }
-        })
-        .catch(err => {
-            console.error("Auth.js fetch error:", err);
-            btn.disabled = false;
-            _showToast("Server error. Please try again.", "error");
-        });
+            .then(res => {
+                btn.disabled = false;
+                if (!res.ok) {
+                    throw new Error("Network response was not ok: " + res.status);
+                }
+                return res.json();
+            })
+            .then(data => {
+                if (data && data.success) {
+                    const dashboardInput = document.getElementById("dashboardUrl");
+                    const targetUrl = (dashboardInput && dashboardInput.value) ? dashboardInput.value : (window.__dashboardUrl || "Dashboard.aspx");
+                    _showToast(data.message || "Login successful", "success");
+                    console.log("Auth.js: Redirecting to", targetUrl);
+                    setTimeout(() => window.location.href = targetUrl, 600);
+                } else {
+                    _showToast((data && data.message) || "Login failed", "error");
+                }
+            })
+            .catch(err => {
+                console.error("Auth.js fetch error:", err);
+                btn.disabled = false;
+                _showToast("Server error. Please try again.", "error");
+            });
 
     });
 
