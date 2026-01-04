@@ -1,27 +1,27 @@
-﻿/* ===== Global Variables & Reset ===== */
+﻿
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Brand Colors */
+ 
     --primary: #4f46e5;
-    /* Indigo 600 */
+    
     --primary-light: #6366f1;
-    /* Indigo 500 */
+    
     --primary-dark: #4338ca;
-    /* Indigo 700 */
 
-    /* Neutrals */
+
+   
     --secondary: #64748b;
-    /* Slate 500 */
+   
     --surface: #ffffff;
     --background: #f8fafc;
-    /* Slate 50 */
+   
 
     /* Text */
     --text-main: #0f172a;
-    /* Slate 900 */
+  
     --text-muted: #64748b;
-    /* Slate 500 */
+  
 
     /* Dashboard Status */
     --success-bg: #ecfdf5;
@@ -33,7 +33,7 @@
 
     /* Borders & Shadows */
     --border: #e2e8f0;
-    /* Slate 200 */
+
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
