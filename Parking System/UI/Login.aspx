@@ -9,12 +9,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Staff Login</title>
 
-        <link rel="stylesheet" href='<%= ResolveUrl("~/Styles/site.css") %>' />
+        <link rel="stylesheet" href="../Styles/site.css?v=2" type="text/css" />
     </head>
 
     <body>
 
-        <div class="login-box" role="main" aria-labelledby="loginHeading">
+        <div class="card login-box" role="main" aria-labelledby="loginHeading">
             <h2 id="loginHeading">Staff Login</h2>
 
             <label for="txtStaffId">Staff ID</label>
