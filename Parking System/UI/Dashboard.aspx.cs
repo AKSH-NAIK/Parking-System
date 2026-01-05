@@ -6,20 +6,13 @@ namespace ParkingSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Check if user is authenticated
             if (Session["StaffId"] == null)
             {
-                Response.Redirect("~/Pages/Login.aspx");
+                // Redirect to login page if not authenticated
+                Response.Redirect("~/UI/Login.aspx");
                 return;
             }
-
-            lblUser.Text = "Logged in as: " + Session["StaffId"];
-        }
-
-        protected void btnLogout_Click(object sender, EventArgs e)
-        {
-            Session.Clear();
-            Session.Abandon();
-            Response.Redirect("~/Pages/Login.aspx");
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="ParkingSystem.Dashboard" %>
     <!DOCTYPE html>
     <html>
 
@@ -12,23 +12,47 @@
         <div class="card wide">
             <h1>Parking Management Dashboard</h1>
 
+            <!-- ===== 2-WHEELER SECTION ===== -->
+            <h2>2-Wheeler Parking</h2>
+
             <div class="stats">
                 <div class="stat-box">
                     <p>Total Slots</p>
-                    <h2>20</h2>
+                    <h2>100</h2>
                 </div>
 
                 <div class="stat-box occupied">
                     <p>Occupied</p>
-                    <h2>8</h2>
+                    <h2>40</h2>
                 </div>
 
                 <div class="stat-box free">
                     <p>Available</p>
-                    <h2>12</h2>
+                    <h2>60</h2>
                 </div>
             </div>
 
+            <!-- ===== 4-WHEELER SECTION ===== -->
+            <h2>4-Wheeler Parking</h2>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <p>Total Slots</p>
+                    <h2>50</h2>
+                </div>
+
+                <div class="stat-box occupied">
+                    <p>Occupied</p>
+                    <h2>18</h2>
+                </div>
+
+                <div class="stat-box free">
+                    <p>Available</p>
+                    <h2>32</h2>
+                </div>
+            </div>
+
+            <!-- ===== ACTION BUTTONS ===== -->
             <div class="actions">
                 <button onclick="goEntry()">Vehicle Entry</button>
                 <button onclick="goExit()">Vehicle Exit</button>
