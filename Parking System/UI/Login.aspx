@@ -7,30 +7,33 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Staff Login</title>
+        <title>Staff Login - Parking Management System</title>
 
-        <link rel="stylesheet" href="../Styles/site.css?v=2" type="text/css" />
+        <link rel="stylesheet" href="../Styles/site.css?v=3" type="text/css" />
     </head>
 
     <body>
 
-        <div class="card login-box" role="main" aria-labelledby="loginHeading">
-            <h2 id="loginHeading">Staff Login</h2>
+        <div class="card" role="main" aria-labelledby="loginHeading">
+            <h1 id="loginHeading">Parking Management System</h1>
+            <p class="subtitle">Staff Login Portal</p>
 
-            <label for="txtStaffId">Staff ID</label>
-            <input type="text" id="txtStaffId" name="txtStaffId" placeholder="Enter your staff ID" />
+            <div class="login-box">
+                <label for="txtStaffId">Staff ID</label>
+                <input type="text" id="txtStaffId" name="txtStaffId" placeholder="Enter your staff ID" />
 
-            <label for="txtPassword">Password</label>
-            <input type="password" id="txtPassword" name="txtPassword" placeholder="Enter your password" />
+                <label for="txtPassword">Password</label>
+                <input type="password" id="txtPassword" name="txtPassword" placeholder="Enter your password" />
 
-            <button type="button" id="btnLogin">Login</button>
+                <button type="button" id="btnLogin">Login</button>
+            </div>
 
             <div class="demo-credentials" aria-hidden="true">
                 <p class="demo-title">Demo Credentials:</p>
-                <p class="demo-line"><strong>Staff ID:</strong>STF001 <strong>Password:</strong> admin123</p>
-                <p class="demo-line"><strong>Staff ID:</strong>STF002 <strong>Password:</strong> staff123</p>
-
+                <p class="demo-line"><strong>Staff ID:</strong> STF001 <strong>Password:</strong> admin123</p>
+                <p class="demo-line"><strong>Staff ID:</strong> STF002 <strong>Password:</strong> staff123</p>
             </div>
+
             <input type="hidden" id="dashboardUrl" value='<%= ResolveUrl("~/UI/Dashboard.aspx") %>' />
         </div>
 

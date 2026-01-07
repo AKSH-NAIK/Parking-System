@@ -4,13 +4,14 @@
 
     <head>
         <title>Dashboard</title>
-        <link rel="stylesheet" href="../Styles/site.css?v=2" type="text/css" />
+        <link rel="stylesheet" href="../Styles/site.css?v=3" type="text/css" />
     </head>
 
     <body>
 
         <div class="card wide">
             <h1>Parking Management Dashboard</h1>
+            <button onclick="logout()">LogOut</button>
 
             <!-- ===== 2-WHEELER SECTION ===== -->
             <h2>2-Wheeler Parking</h2>
@@ -54,11 +55,12 @@
 
             <!-- ===== ACTION BUTTONS ===== -->
             <div class="actions">
-                <button onclick="goEntry()">Vehicle Entry</button>
+                <button onclick="goEntry2()">2-Wheeler Entry</button>
+                <button onclick="goEntry4()">4-Wheeler Entry</button>
                 <button onclick="goExit()">Vehicle Exit</button>
-                <button class="secondary" onclick="logout()">Logout</button>
             </div>
         </div>
+
 
         <script src="../Scripts/dashboard.js"></script>
     </body>
