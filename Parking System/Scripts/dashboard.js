@@ -18,10 +18,15 @@ function logout() {
         });
 }
 
-// Navigation functions for future pages
-function goEntry() {
-    // TODO: Navigate to vehicle entry page
-    alert('Vehicle Entry page - Coming soon!');
+// Navigation functions for entry pages
+function goEntry2() {
+    // Navigate to 2-wheeler entry page
+    window.location.href = 'Entry2Wheeler.aspx';
+}
+
+function goEntry4() {
+    // Navigate to 4-wheeler entry page
+    window.location.href = 'Entry4Wheeler.aspx';
 }
 
 function goExit() {

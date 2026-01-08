@@ -519,6 +519,55 @@ button.secondary:hover {
     color: var(--danger-text);
 }
 
+/* ===== Entry Forms Styling ===== */
+.card h1 {
+    margin-bottom: 2rem;
+}
+
+.card label {
+    text-align: left;
+    margin-top: 0.5rem;
+}
+
+.card input[type="text"] {
+    margin-bottom: 1.5rem;
+}
+
+.card button {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* Back to Dashboard Button */
+.card .back-button {
+    background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+    box-shadow: 0 4px 12px -2px rgba(100, 116, 139, 0.4);
+    margin-top: 1rem;
+}
+
+.card .back-button:hover {
+    box-shadow: 0 8px 20px -4px rgba(100, 116, 139, 0.5);
+}
+
+/* Enhanced Input Focus Animation */
+input[type="text"]:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1), 0 4px 12px -2px rgba(79, 70, 229, 0.2);
+}
+
+/* Result Message Styling */
+#result {
+    min-height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#result:empty {
+    display: none;
+}
+
+
 .demo-credentials {
     background: var(--background);
     padding: 1rem;

@@ -124,6 +124,8 @@
     <Content Include="Scripts\Auth.js" />
     <Content Include="Styles\site.css" />
     <Content Include="UI\Dashboard.aspx" />
+    <Content Include="UI\Entry2Wheeler.aspx" />
+    <Content Include="UI\Entry4Wheeler.aspx" />
     <Content Include="UI\Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -223,6 +225,20 @@
     </Compile>
     <Compile Include="UI\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Entry2Wheeler.aspx.cs">
+      <DependentUpon>Entry2Wheeler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Entry2Wheeler.aspx.designer.cs">
+      <DependentUpon>Entry2Wheeler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Entry4Wheeler.aspx.cs">
+      <DependentUpon>Entry4Wheeler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Entry4Wheeler.aspx.designer.cs">
+      <DependentUpon>Entry4Wheeler.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
