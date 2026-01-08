@@ -13,8 +13,22 @@
         <div class="card">
             <h1>4-Wheeler Entry</h1>
 
+            <label>Owner Name</label>
+            <input type="text" id="ownerName" placeholder="Jane Doe" />
+
+            <label>Phone Number</label>
+            <input type="text" id="phoneNumber" placeholder="9876543210" />
+
             <label>Vehicle Number</label>
             <input type="text" id="vehicleNumber" placeholder="MH14XY5678" />
+
+            <label>Entry Time</label>
+            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <input type="checkbox" id="useSystemTime" checked onchange="toggleTimeInput()"
+                    style="width: auto; margin-right: 0.5rem; margin-bottom: 0;">
+                <label for="useSystemTime" style="margin-bottom: 0; font-weight: normal;">Use System Time</label>
+            </div>
+            <input type="datetime-local" id="entryTime" disabled />
 
             <button onclick="submit4W()">Allocate Slot</button>
 
@@ -24,13 +38,44 @@
         </div>
 
         <script>
-            function submit4W() {
-                const vehicle = document.getElementById("vehicleNumber").value;
+            function toggleTimeInput() {
+                const useSystem = document.getElementById("useSystemTime").checked;
+                const timeInput = document.getElementById("entryTime");
 
-                if (vehicle.trim() === "") {
+                timeInput.disabled = useSystem;
+
+                if (useSystem) {
+                    timeInput.value = ""; // Clear when disabled
+                } else {
+                    // Set current time as default when enabling
+                    const now = new Date();
+                    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                    timeInput.value = now.toISOString().slice(0, 16);
+                }
+            }
+
+            function submit4W() {
+                const name = document.getElementById("ownerName").value;
+                const phone = document.getElementById("phoneNumber").value;
+                const vehicle = document.getElementById("vehicleNumber").value;
+                const useSystemTime = document.getElementById("useSystemTime").checked;
+                let entryTime = "";
+
+                if (name.trim() === "" || phone.trim() === "" || vehicle.trim() === "") {
                     document.getElementById("result").className = "message error";
-                    document.getElementById("result").innerText = "Please enter vehicle number";
+                    document.getElementById("result").innerText = "Please fill in all details";
                     return;
+                }
+
+                if (!useSystemTime) {
+                    entryTime = document.getElementById("entryTime").value;
+                    if (entryTime === "") {
+                        document.getElementById("result").className = "message error";
+                        document.getElementById("result").innerText = "Please select entry time";
+                        return;
+                    }
+                } else {
+                    entryTime = new Date().toLocaleString();
                 }
 
                 document.getElementById("result").className = "message success";

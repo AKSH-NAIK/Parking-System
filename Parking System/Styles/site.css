@@ -201,6 +201,8 @@ p {
     top: 3rem;
     right: 3rem;
     min-width: auto;
+    width: auto;
+    /* FIX: Prevent full width */
     padding: 0.75rem 1.5rem;
     background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
     box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.3);
@@ -719,5 +721,93 @@ input[type="text"]:focus {
     .demo-line {
         font-size: 0.7rem;
         margin-bottom: 0.15rem;
+    }
+}
+
+/* Dashboard button hover / sheen effect
+   Add these rules near the existing ".card.wide .actions button" block.
+*/
+
+.card.wide .actions button {
+    /* ensure positioned for pseudo-element sheen */
+    position: relative;
+    overflow: hidden;
+    transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+    will-change: transform, box-shadow;
+    /* FIX: Override generic .card button 100% width */
+    width: auto;
+    min-width: 200px;
+}
+
+/* angled glossy sheen that slides across on hover */
+.card.wide .actions button::after {
+    content: "";
+    position: absolute;
+    top: -45%;
+    left: -40%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(120deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.18) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    transform: rotate(25deg) translateX(-100%);
+    opacity: 0;
+    transition: transform 600ms var(--ease-out), opacity 240ms var(--ease-out);
+    pointer-events: none;
+}
+
+/* stronger lift plus sheen on hover */
+.card.wide .actions button:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 44px rgba(16, 24, 40, 0.14);
+}
+
+/* animate sheen across */
+.card.wide .actions button:hover::after {
+    transform: rotate(25deg) translateX(260%);
+    opacity: 1;
+}
+
+/* pressed/active state - subtle */
+.card.wide .actions button:active {
+    transform: translateY(-2px) scale(0.997);
+    box-shadow: 0 10px 22px rgba(16, 24, 40, 0.10);
+}
+
+/* keyboard-focus accessibility */
+.card.wide .actions button:focus {
+    outline: none;
+    box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.10);
+}
+
+/* reduce motion users */
+@media (prefers-reduced-motion: reduce) {
+
+    .card.wide .actions button,
+    .card.wide .actions button::after {
+        transition: none !important;
+    }
+
+    .card.wide .actions button:hover::after {
+        transform: none;
+        opacity: 0;
+    }
+}
+
+/* disable sheen on small screens (tap experience) */
+@media (max-width: 768px) {
+    .card.wide .actions button::after {
+        display: none;
+    }
+
+    .card.wide .actions button:hover {
+        transform: none;
+        box-shadow: 0 8px 20px rgba(16, 24, 40, 0.08);
+    }
+
+    /* FIX: Ensure full width on mobile */
+    .card.wide .actions button {
+        width: 100%;
     }
 }
