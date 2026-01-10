@@ -23,10 +23,9 @@
             <input type="text" id="vehicleNumber" placeholder="MH12AB1234" />
 
             <label>Entry Time</label>
-            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                <input type="checkbox" id="useSystemTime" checked onchange="toggleTimeInput()"
-                    style="width: auto; margin-right: 0.5rem; margin-bottom: 0;">
-                <label for="useSystemTime" style="margin-bottom: 0; font-weight: normal;">Use System Time</label>
+            <div class="checkbox-row">
+                <input type="checkbox" id="useSystemTime" checked onchange="toggleTimeInput()">
+                <label for="useSystemTime">Use System Time</label>
             </div>
             <input type="datetime-local" id="entryTime" disabled />
 
