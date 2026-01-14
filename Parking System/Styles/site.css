@@ -289,3 +289,28 @@ button:active { transform: translateY(-1px); }
     input[type="text"], input[type="password"], select { padding:.65rem .875rem; }
     button { padding:.875rem 1.75rem; }
 }
+
+/* ===== NEW RESPONSIVE DASHBOARD HELPER CLASSES ===== */
+.dash-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;
+}
+
+.dash-grid-2col {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+}
+
+.actions-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; width: 100%;
+}
+.actions-grid button { width: 100%; margin: 0; }
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    .dash-header { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    .dash-header > div { width: 100%; justify-content: space-between; } 
+    
+    .dash-grid-2col { grid-template-columns: 1fr; gap: 1rem; }
+    
+    .actions-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+    .actions-grid button { width: 100%; }
+}

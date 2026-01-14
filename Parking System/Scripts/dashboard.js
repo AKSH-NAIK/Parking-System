@@ -18,6 +18,7 @@ function logout() {
         });
 }
 
+
 // Navigation functions for entry pages
 function goEntry2() {
     // Navigate to 2-wheeler entry page
@@ -30,6 +31,67 @@ function goEntry4() {
 }
 
 function goExit() {
-    // TODO: Navigate to vehicle exit page
+    // Navigate to vehicle exit page
     alert('Vehicle Exit page - Coming soon!');
 }
+
+/* ===== NEW FUNCTIONALITY ===== */
+
+// 1. Clock Functionality
+function updateTime() {
+    const now = new Date();
+    const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const timeString = now.toLocaleDateString('en-US', options);
+    
+    const clockElement = document.getElementById('clock');
+    if (clockElement) {
+        clockElement.innerText = timeString;
+    }
+}
+
+// Update time every second
+setInterval(updateTime, 1000);
+updateTime(); // Run immediately
+
+// 2. Refresh Stats
+function refreshStats() {
+    // In a real app, this would fetch new data via AJAX.
+    // For now, we reload the page to simulate a refresh.
+    window.location.reload();
+}
+
+// 3. Search Vehicle
+function searchVehicle() {
+    const vehicleNo = prompt("Enter Vehicle Number to Search (e.g., MH-12-AB-1234):");
+    if (vehicleNo) {
+        // Placeholder search logic
+        alert("Searching database for vehicle: " + vehicleNo + "\n\nResult: Vehicle not found (Search API not implemented yet).");
+    }
+}
+
+// 4. Simulate Revenue Load (Visual Effect)
+// Function to count up revenue
+function animateRevenue() {
+    const revenueElement = document.getElementById('revenue-today');
+    if (!revenueElement) return;
+
+    let current = 0;
+    const target = 2500; // Example target for today
+    const duration = 2000; // 2 seconds
+    const stepTime = 50;
+    const steps = duration / stepTime;
+    const increment = target / steps;
+
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            current = target;
+            clearInterval(timer);
+        }
+        revenueElement.innerText = "₹ " + Math.floor(current);
+    }, stepTime);
+}
+
+// Start animation on load
+document.addEventListener('DOMContentLoaded', animateRevenue);
+
