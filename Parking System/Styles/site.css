@@ -183,100 +183,7 @@ p,
     box-shadow: 0 8px 12px rgba(239, 68, 68, 0.4);
 }
 
-/* Stats */
-.stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0 3rem;
-}
-
-.stat-box {
-    background: var(--surface);
-    padding: 2rem 1.5rem;
-    border-radius: 1.25rem;
-    border: 2px solid var(--border);
-    transition: transform .3s var(--ease-out), box-shadow .3s var(--ease-out);
-    position: relative;
-    overflow: hidden;
-    cursor: default;
-}
-
-.stat-box::before {
-    content: '';
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 4px;
-    opacity: 0;
-    transition: opacity .3s ease;
-}
-
-.stat-box:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    border-color: transparent;
-}
-
-.stat-box:hover::before {
-    opacity: 1;
-}
-
-.stat-box p {
-    font-size: .7rem;
-    text-transform: uppercase;
-    letter-spacing: .12em;
-    font-weight: 700;
-    margin-bottom: .75rem
-}
-
-.stat-box h2 {
-    font-size: 3rem;
-    line-height: 1;
-    margin: 0
-}
-
-/* Variants via CSS variables to avoid repetition */
-.stat-box.occupied {
-    --bg: var(--danger-bg);
-    --grad: var(--danger-grad);
-    --txt: var(--danger-text);
-    border-color: rgba(220, 38, 38, 0.2);
-}
-
-.stat-box.free {
-    --bg: var(--success-bg);
-    --grad: var(--success-grad);
-    --txt: var(--success-text);
-    border-color: rgba(5, 150, 105, 0.2);
-}
-
-.stat-box.default {
-    --bg: var(--info-bg);
-    --grad: var(--info-grad);
-    --txt: var(--info-text);
-    border-color: rgba(37, 99, 235, 0.2);
-}
-
-.stat-box.occupied,
-.stat-box.free,
-.stat-box.default {
-    background: linear-gradient(135deg, var(--bg) 0%, #fff 100%);
-}
-
-.stat-box.occupied::before,
-.stat-box.free::before,
-.stat-box.default::before {
-    background: var(--grad);
-}
-
-.stat-box.occupied h2,
-.stat-box.free h2,
-.stat-box.default h2,
-.stat-box.occupied p,
-.stat-box.free p,
-.stat-box.default p {
-    color: var(--txt);
-}
+/* Stats and Stat-Box styles removed (replaced by .parking-card) */
 
 /* Forms and inputs */
 label {
@@ -339,14 +246,6 @@ input[type="datetime-local"]:disabled {
 }
 
 /* Buttons baseline */
-.actions {
-    display: flex;
-    justify-content: center;
-    gap: 1.25rem;
-    flex-wrap: wrap;
-    margin-top: 2.5rem;
-}
-
 button {
     display: inline-flex;
     align-items: center;
@@ -390,39 +289,11 @@ button:active {
     transform: translateY(-1px);
 }
 
-/* Form-specific alignment: keep entry-form buttons full width and well spaced (minimal) */
+/* Form-specific alignment: keep entry-form buttons full width */
 .card:not(.wide) button {
     width: 100%;
     margin-top: 0.75rem;
     box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
-}
-
-/* Color variants */
-.actions button:nth-child(1) {
-    background: var(--success-grad);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
-}
-
-.actions button:nth-child(2) {
-    background: var(--info-grad);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12);
-}
-
-.actions button:nth-child(3) {
-    background: var(--warning-grad);
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.12);
-}
-
-.actions button:nth-child(1):hover {
-    box-shadow: 0 12px 26px rgba(16, 185, 129, 0.16);
-}
-
-.actions button:nth-child(2):hover {
-    box-shadow: 0 12px 26px rgba(59, 130, 246, 0.16);
-}
-
-.actions button:nth-child(3):hover {
-    box-shadow: 0 12px 26px rgba(245, 158, 11, 0.16);
 }
 
 /* Back button */
@@ -435,51 +306,6 @@ button:active {
 
 .card .back-button:hover {
     box-shadow: 0 8px 20px rgba(100, 116, 139, 0.2);
-}
-
-/* Dashboard button specifics (compact on desktop, full width on mobile) */
-.card.wide .actions {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 2.25rem;
-}
-
-.card.wide .actions button {
-    width: clamp(180px, 40%, 520px);
-    min-width: 180px;
-    padding: .75rem 1.1rem;
-    border-radius: 12px;
-}
-
-/* Sheen pseudo-element for dashboard buttons */
-.card.wide .actions button::after {
-    content: "";
-    position: absolute;
-    top: -45%;
-    left: -40%;
-    width: 40%;
-    height: 200%;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.18) 50%, rgba(255, 255, 255, 0) 100%);
-    transform: rotate(25deg) translateX(-100%);
-    opacity: 0;
-    transition: transform .6s var(--ease-out), opacity .24s var(--ease-out);
-    pointer-events: none;
-}
-
-.card.wide .actions button:hover::after {
-    transform: rotate(25deg) translateX(260%);
-    opacity: 1;
-}
-
-.card.wide .actions button:focus {
-    outline: none;
-    box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.10);
-}
-
-.card.wide .actions button:active {
-    transform: translateY(-2px) scale(.997);
-    box-shadow: 0 10px 22px rgba(16, 24, 40, 0.10);
 }
 
 /* Messages & utils */
@@ -573,34 +399,6 @@ button:active {
     h1 {
         font-size: 1.5rem;
     }
-
-    .stats {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        margin: 1.5rem 0 2rem;
-    }
-
-    .stat-box h2 {
-        font-size: 2.5rem;
-    }
-
-    .actions {
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 2rem;
-    }
-
-    button,
-    .card.wide .actions button {
-        width: 100%;
-        max-width: 100%;
-        padding: .9rem 1rem;
-        min-width: auto;
-    }
-
-    .card.wide .actions button::after {
-        display: none;
-    }
 }
 
 @media (max-width: 480px) {
@@ -692,6 +490,66 @@ button:active {
         width: 100%;
     }
 }
+
+/* =========================================
+   FINANCIALS SECTION 
+   ========================================= */
+.section-title {
+    margin: 1.5rem 0 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #334155;
+}
+
+.financials-grid {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.finance-card {
+    background: #fff;
+    /* White card */
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f1f5f9;
+    flex: 1;
+    /* Equal width */
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.finance-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.fc-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.fc-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.1;
+}
+
+/* Responsive Financials */
+@media (max-width: 600px) {
+    .financials-grid {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
 
 /* =========================================
    NEW PARKING CARD UI (Course Card Style) 
@@ -888,19 +746,28 @@ button:active {
 
 /* Mobile Overrides (< 768px) */
 @media (max-width: 768px) {
+
+    /* Keep buttons in one line on mobile too, allow scroll if needed */
     .actions-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        /* Stack vertically */
+        display: flex;
+        grid-template-columns: none;
+        /* Reset grid */
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        /* Align start to allow scroll */
+        padding-bottom: 0.5rem;
+        /* Space for scrollbar if any */
+        -webkit-overflow-scrolling: touch;
         gap: 0.75rem;
     }
 
     .actions-grid button {
-        width: 100%;
-        /* Full width */
+        width: auto;
         max-width: none;
-        /* Remove limit */
-        min-width: 0;
+        flex: 0 0 auto;
+        /* Don't shrink too much, just scroll */
+        min-width: max-content;
     }
 
     /* Adjust Card Stats for very small screens */

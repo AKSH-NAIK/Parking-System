@@ -23,15 +23,16 @@
             </div>
 
             <!-- ===== REVENUE SECTION ===== -->
-            <h2 style="margin: 1rem 0 0.5rem; font-size: 1.1rem;">Financials</h2>
-            <div class="stats" style="margin: 0.5rem 0 1.5rem; gap: 1rem;">
-                <div class="stat-box" style="padding: 1rem; border-radius: 1rem;">
-                    <p style="margin-bottom: 0.25rem;">Today's Revenue</p>
-                    <h2 id="revenue-today" style="font-size: 1.8rem;">₹ 0</h2>
+            <!-- ===== REVENUE SECTION ===== -->
+            <h2 class="section-title">Financials</h2>
+            <div class="financials-grid">
+                <div class="finance-card">
+                    <p class="fc-label">Today's Revenue</p>
+                    <h2 id="revenue-today" class="fc-value">₹ 0</h2>
                 </div>
-                <div class="stat-box" style="padding: 1rem; border-radius: 1rem;">
-                    <p style="margin-bottom: 0.25rem;">Monthly Revenue</p>
-                    <h2 style="font-size: 1.8rem;">₹ 12,500</h2>
+                <div class="finance-card">
+                    <p class="fc-label">Monthly Revenue</p>
+                    <h2 class="fc-value">₹ 12,500</h2>
                 </div>
             </div>
 
@@ -128,9 +129,7 @@
             </div>
 
             <!-- ===== ACTION BUTTONS ===== -->
-            <div class="actions actions-grid">
-                <button onclick="goEntry2()">2-Wheeler Entry</button>
-                <button onclick="goEntry4()">4-Wheeler Entry</button>
+            <div class="actions-grid">
                 <button onclick="searchVehicle()">Search Vehicle</button>
                 <button onclick="refreshStats()">Refresh Stats</button>
                 <button onclick="goExit()">Vehicle Exit</button>
