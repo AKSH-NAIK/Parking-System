@@ -38,56 +38,90 @@
             <!-- ===== PARKING SECTIONS (Two Columns) ===== -->
             <!-- ===== PARKING SECTIONS (Two Columns) ===== -->
             <div class="dash-grid-2col">
-                <!-- 2-WHEELER -->
-                <div>
-                    <h2 style="margin: 0 0 0.5rem; font-size: 1.1rem;">2-Wheeler</h2>
-                    <div class="stats" style="grid-template-columns: 1fr; gap: 0.5rem; margin: 0;">
-                        <div class="stat-box" style="padding: 0.75rem; border-radius: 0.75rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <p style="margin: 0;">Total Slots</p>
-                                <h2 style="font-size: 1.5rem; margin: 0;">100</h2>
-                            </div>
+                <!-- 2-WHEELER CARD -->
+                <div class="parking-card">
+                    <div class="pc-header">
+                        <div>
+                            <h3 class="pc-title">2-Wheeler Parking</h3>
+
                         </div>
-                        <div class="stat-box occupied" style="padding: 0.75rem; border-radius: 0.75rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <p style="margin: 0;">Occupied</p>
-                                <h2 style="font-size: 1.5rem; margin: 0;">40 <span
-                                        style="font-size: 0.6em;">(40%)</span></h2>
-                            </div>
+                        <div style="text-align: right;">
+                            <a href="Entry2Wheeler.aspx" class="pc-link">Book Slot</a>
+
                         </div>
-                        <div class="stat-box free" style="padding: 0.75rem; border-radius: 0.75rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <p style="margin: 0;">Available</p>
-                                <h2 style="font-size: 1.5rem; margin: 0;">60 <span
-                                        style="font-size: 0.6em;">(60%)</span></h2>
-                            </div>
+                    </div>
+
+                    <div class="pc-body">
+
+                        <div class="pc-text-row">
+                            <span class="text-occupied-label">Occupied 40%</span>
+                            <span class="text-available-label">Available 60%</span>
+                        </div>
+                        <div class="pc-progress-track">
+                            <div class="pc-progress-fill fill-occupied" style="width: 40%;"></div>
+                            <div class="pc-progress-fill fill-available" style="width: 60%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="pc-footer">
+                        <div class="pc-stat-item">
+                            <span class="pc-dot dot-total"></span>
+                            <span class="pc-label">Total</span>
+                            <span class="pc-value">100</span>
+                        </div>
+                        <div class="pc-stat-item">
+                            <span class="pc-dot dot-occupied"></span>
+                            <span class="pc-label">Occupied</span>
+                            <span class="pc-value">40</span>
+                        </div>
+                        <div class="pc-stat-item">
+                            <span class="pc-dot dot-available"></span>
+                            <span class="pc-label">Available</span>
+                            <span class="pc-value">60</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- 4-WHEELER -->
-                <div>
-                    <h2 style="margin: 0 0 0.5rem; font-size: 1.1rem;">4-Wheeler</h2>
-                    <div class="stats" style="grid-template-columns: 1fr; gap: 0.5rem; margin: 0;">
-                        <div class="stat-box" style="padding: 0.75rem; border-radius: 0.75rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <p style="margin: 0;">Total Slots</p>
-                                <h2 style="font-size: 1.5rem; margin: 0;">50</h2>
-                            </div>
+                <!-- 4-WHEELER CARD -->
+                <div class="parking-card">
+                    <div class="pc-header">
+                        <div>
+                            <h3 class="pc-title">4-Wheeler Parking</h3>
+                            <!-- Removed Zone -->
                         </div>
-                        <div class="stat-box occupied" style="padding: 0.75rem; border-radius: 0.75rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <p style="margin: 0;">Occupied</p>
-                                <h2 style="font-size: 1.5rem; margin: 0;">18 <span
-                                        style="font-size: 0.6em;">(36%)</span></h2>
-                            </div>
+                        <div style="text-align: right;">
+                            <a href="Entry4Wheeler.aspx" class="pc-link">Book Slot</a>
+                            <!-- Removed Manager -->
                         </div>
-                        <div class="stat-box free" style="padding: 0.75rem; border-radius: 0.75rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <p style="margin: 0;">Available</p>
-                                <h2 style="font-size: 1.5rem; margin: 0;">32 <span
-                                        style="font-size: 0.6em;">(64%)</span></h2>
-                            </div>
+                    </div>
+
+                    <div class="pc-body">
+                        <!-- Labels above the bar -->
+                        <div class="pc-text-row">
+                            <span class="text-occupied-label">Occupied 36%</span>
+                            <span class="text-available-label">Available 64%</span>
+                        </div>
+                        <div class="pc-progress-track">
+                            <div class="pc-progress-fill fill-occupied" style="width: 36%;"></div>
+                            <div class="pc-progress-fill fill-available" style="width: 64%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="pc-footer">
+                        <div class="pc-stat-item">
+                            <span class="pc-dot dot-total"></span>
+                            <span class="pc-label">Total</span>
+                            <span class="pc-value">50</span>
+                        </div>
+                        <div class="pc-stat-item">
+                            <span class="pc-dot dot-occupied"></span>
+                            <span class="pc-label">Occupied</span>
+                            <span class="pc-value">18</span>
+                        </div>
+                        <div class="pc-stat-item">
+                            <span class="pc-dot dot-available"></span>
+                            <span class="pc-label">Available</span>
+                            <span class="pc-value">32</span>
                         </div>
                     </div>
                 </div>
