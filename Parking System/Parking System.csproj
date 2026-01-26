@@ -127,6 +127,7 @@
     <Content Include="UI\Dashboard.aspx" />
     <Content Include="UI\Entry2Wheeler.aspx" />
     <Content Include="UI\Entry4Wheeler.aspx" />
+    <Content Include="UI\ExitVehicle.aspx" />
     <Content Include="UI\Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -247,6 +248,13 @@
     </Compile>
     <Compile Include="UI\Entry4Wheeler.aspx.designer.cs">
       <DependentUpon>Entry4Wheeler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ExitVehicle.aspx.cs">
+      <DependentUpon>ExitVehicle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ExitVehicle.aspx.designer.cs">
+      <DependentUpon>ExitVehicle.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

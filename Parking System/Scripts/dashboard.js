@@ -32,7 +32,7 @@ function goEntry4() {
 
 function goExit() {
     // Navigate to vehicle exit page
-    alert('Vehicle Exit page - Coming soon!');
+    window.location.href = 'ExitVehicle.aspx';
 }
 
 /* ===== NEW FUNCTIONALITY ===== */
