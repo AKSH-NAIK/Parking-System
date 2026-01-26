@@ -122,6 +122,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Auth.js" />
+    <Content Include="UI\SearchVehicle.aspx" />
     <Content Include="Styles\site.css" />
     <Content Include="UI\Dashboard.aspx" />
     <Content Include="UI\Entry2Wheeler.aspx" />
@@ -218,6 +219,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SearchVehicle.aspx.cs">
+      <DependentUpon>SearchVehicle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\SearchVehicle.aspx.designer.cs">
+      <DependentUpon>SearchVehicle.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>

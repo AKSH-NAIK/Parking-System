@@ -125,7 +125,7 @@ body {
     z-index: 1;
 }
 
-/* Typography */
+
 h1 {
     font-size: 1.75rem;
     font-weight: 800;
@@ -168,7 +168,6 @@ p,
     font-weight: 500;
 }
 
-/* Logout button (top-right) */
 .card.wide>button:first-of-type {
     position: absolute;
     top: 3rem;
@@ -631,12 +630,12 @@ button:active {
 }
 
 .text-occupied-label {
-    color: #10b981;
+    color: #ef4444;
 }
 
 /* Green */
 .text-available-label {
-    color: #ef4444;
+    color: #10b981;
 }
 
 /* Red */
@@ -655,12 +654,12 @@ button:active {
 }
 
 .fill-occupied {
-    background: #10b981;
+    background: #ef4444;
 }
 
 /* Green */
 .fill-available {
-    background: #ef4444;
+    background: #10b981;
 }
 
 /* Red */
@@ -694,11 +693,11 @@ button:active {
 }
 
 .dot-occupied {
-    background: #10b981;
+    background: #ef4444;
 }
 
 .dot-available {
-    background: #ef4444;
+    background: #10b981;
 }
 
 .pc-label {

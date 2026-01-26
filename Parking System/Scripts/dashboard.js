@@ -42,7 +42,7 @@ function updateTime() {
     const now = new Date();
     const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
     const timeString = now.toLocaleDateString('en-US', options);
-    
+
     const clockElement = document.getElementById('clock');
     if (clockElement) {
         clockElement.innerText = timeString;
@@ -62,11 +62,8 @@ function refreshStats() {
 
 // 3. Search Vehicle
 function searchVehicle() {
-    const vehicleNo = prompt("Enter Vehicle Number to Search (e.g., MH-12-AB-1234):");
-    if (vehicleNo) {
-        // Placeholder search logic
-        alert("Searching database for vehicle: " + vehicleNo + "\n\nResult: Vehicle not found (Search API not implemented yet).");
-    }
+    // Navigate to search vehicle page
+    window.location.href = 'searchvehicle.aspx';
 }
 
 // 4. Simulate Revenue Load (Visual Effect)

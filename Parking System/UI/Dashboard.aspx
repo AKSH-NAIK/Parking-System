@@ -137,7 +137,8 @@
         </div>
 
 
-        <script src="../Scripts/dashboard.js"></script>
+        <!-- Replace the existing script tag at the bottom with this: -->
+<script src="../Scripts/dashboard.js?v=<%= DateTime.Now.Ticks %>"></script>
     </body>
 
     </html>
