@@ -215,6 +215,59 @@ select:focus {
     transform: translateY(-2px);
 }
 
+/* Password Toggle Styling */
+.password-group {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.password-group input {
+    margin-bottom: 0 !important;
+    padding-right: 3rem !important;
+}
+
+#togglePassword {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    min-width: unset;
+    width: auto;
+    height: auto;
+    box-shadow: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: color 0.2s ease, opacity 0.2s ease;
+    opacity: 0.7;
+}
+
+#togglePassword:hover {
+    color: var(--primary);
+    opacity: 1;
+    transform: translateY(-50%);
+    /* Stay centered */
+    background: none;
+    box-shadow: none;
+}
+
+#togglePassword:active {
+    transform: translateY(-50%) scale(0.9);
+}
+
+#togglePassword::before {
+    display: none;
+    /* Remove the shine effect from the base button style */
+}
+
 /* --- System time component styling (minimal, applies to 2/4-wheeler forms) --- */
 input[type="datetime-local"] {
     width: 100%;
