@@ -10,6 +10,18 @@ function escapeHtml(value) {
         .replace(/"/g, "&quot;");
 }
 
+function normalizeVehicleNumber(value) {
+    return (value || "").toUpperCase().replace(/\s+/g, "");
+}
+
+function isValidPartialVehicleNumber(value) {
+    return /^[A-Z0-9]*$/.test(value);
+}
+
+function isValidVehicleNumber(value) {
+    return /^[A-Z0-9]{4,15}$/.test(value);
+}
+
 function renderEmpty(message) {
     var results = document.getElementById("searchResults");
     results.innerHTML = `
@@ -42,10 +54,22 @@ function renderResults(items) {
 
 function performSearch() {
     var input = document.getElementById("searchInput");
-    var query = (input.value || "").trim().toUpperCase();
+    var query = normalizeVehicleNumber(input.value);
+
+    input.value = query;
 
     if (!query) {
         renderEmpty("Enter a vehicle number to search");
+        return;
+    }
+
+    if (!isValidPartialVehicleNumber(query)) {
+        renderEmpty("Only letters and numbers are allowed");
+        return;
+    }
+
+    if (query.length < 2) {
+        renderEmpty("Type at least 2 characters");
         return;
     }
 
@@ -78,6 +102,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!input) return;
 
     input.addEventListener("input", function () {
+        var normalized = normalizeVehicleNumber(input.value);
+        if (!isValidPartialVehicleNumber(normalized)) {
+            renderEmpty("Only letters and numbers are allowed");
+            return;
+        }
+
         clearTimeout(searchTimer);
         searchTimer = setTimeout(performSearch, 250);
     });

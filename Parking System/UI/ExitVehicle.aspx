@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExitVehicle.aspx.cs" Inherits="Parking_System.UI.ExitVehicle"
+    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExitVehicle.aspx.cs" Inherits="Parking_System.UI.ExitVehicle"
     %>
     <!DOCTYPE html>
     <html>
