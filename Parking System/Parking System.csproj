@@ -122,6 +122,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Auth.js" />
+    <Content Include="Scripts\entryVehicle.js" />
+    <Content Include="Scripts\search.js" />
     <Content Include="Scripts\vehicleEntry.js" />
     <Content Include="UI\SearchVehicle.aspx" />
     <Content Include="Styles\site.css" />
@@ -160,6 +162,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="API\auth.ashx" />
     <Content Include="API\vehicleEntry.ashx" />
+    <Content Include="API\searchVehicle.ashx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -196,6 +199,9 @@
   <ItemGroup>
     <Compile Include="API\auth.ashx.cs">
       <DependentUpon>auth.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="API\searchVehicle.ashx.cs">
+      <DependentUpon>searchVehicle.ashx</DependentUpon>
     </Compile>
     <Compile Include="API\vehicleEntry.ashx.cs">
       <DependentUpon>vehicleEntry.ashx</DependentUpon>
