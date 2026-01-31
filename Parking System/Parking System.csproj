@@ -163,6 +163,7 @@
     <Content Include="API\auth.ashx" />
     <Content Include="API\vehicleEntry.ashx" />
     <Content Include="API\searchVehicle.ashx" />
+    <Content Include="API\dashboardStats.ashx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
