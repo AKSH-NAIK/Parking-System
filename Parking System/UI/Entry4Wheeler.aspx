@@ -19,70 +19,30 @@
             <input type="text" id="ownerName" placeholder="Jane Doe" />
 
             <label>Phone Number</label>
-            <input type="text" id="phoneNumber" placeholder="9876543210" />
+            <input type="text" id="phoneNumber" placeholder="9876543210" maxlength="10" />
 
             <label>Vehicle Number</label>
-            <input type="text" id="vehicleNumber" placeholder="MH14XY5678" />
+            <input type="text" id="vehicleNumber" placeholder="MH14XY5678" style="text-transform: uppercase;" />
 
             <label>Entry Time</label>
             <div class="checkbox-row">
-                <input type="checkbox" id="useSystemTime" checked onchange="toggleTimeInput()">
+                <input type="checkbox" id="useSystemTime" checked onchange="VehicleEntry.toggleTimeInput()">
                 <label for="useSystemTime">Use System Time</label>
             </div>
             <input type="datetime-local" id="entryTime" disabled />
 
-            <button onclick="submit4W()">Allocate Slot</button>
+            <button onclick="VehicleEntry.submitEntry()">Allocate Slot</button>
 
             <div id="result" class="message success"></div>
 
             <button class="back-button" onclick="window.location.href='Dashboard.aspx'">Back to Dashboard</button>
         </div>
 
+        <script src="../Scripts/vehicleEntry.js"></script>
         <script>
-            function toggleTimeInput() {
-                const useSystem = document.getElementById("useSystemTime").checked;
-                const timeInput = document.getElementById("entryTime");
-
-                timeInput.disabled = useSystem;
-
-                if (useSystem) {
-                    timeInput.value = ""; // Clear when disabled
-                } else {
-                    // Set current time as default when enabling
-                    const now = new Date();
-                    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-                    timeInput.value = now.toISOString().slice(0, 16);
-                }
-            }
-
-            function submit4W() {
-                const name = document.getElementById("ownerName").value;
-                const phone = document.getElementById("phoneNumber").value;
-                const vehicle = document.getElementById("vehicleNumber").value;
-                const useSystemTime = document.getElementById("useSystemTime").checked;
-                let entryTime = "";
-
-                if (name.trim() === "" || phone.trim() === "" || vehicle.trim() === "") {
-                    document.getElementById("result").className = "message error";
-                    document.getElementById("result").innerText = "Please fill in all details";
-                    return;
-                }
-
-                if (!useSystemTime) {
-                    entryTime = document.getElementById("entryTime").value;
-                    if (entryTime === "") {
-                        document.getElementById("result").className = "message error";
-                        document.getElementById("result").innerText = "Please select entry time";
-                        return;
-                    }
-                } else {
-                    entryTime = new Date().toLocaleString();
-                }
-
-                document.getElementById("result").className = "message success";
-                document.getElementById("result").innerText =
-                    "4-Wheeler Slot B08 allocated successfully (Demo)";
-            }
+            window.addEventListener('DOMContentLoaded', function() {
+                VehicleEntry.init('4-Wheeler');
+            });
         </script>
 
     </body>
