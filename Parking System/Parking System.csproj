@@ -201,6 +201,9 @@
     <Compile Include="API\auth.ashx.cs">
       <DependentUpon>auth.ashx</DependentUpon>
     </Compile>
+    <Compile Include="API\dashboardStats.ashx.cs">
+      <DependentUpon>dashboardStats.ashx</DependentUpon>
+    </Compile>
     <Compile Include="API\searchVehicle.ashx.cs">
       <DependentUpon>searchVehicle.ashx</DependentUpon>
     </Compile>
