@@ -24,9 +24,9 @@ A robust and efficient web-based application designed to streamline parking oper
 ## 🛠️ Technology Stack
 
 - **Backend**: C# (.NET Framework 4.7.2).
+- **Frontend Scripting**: JavaScript (jQuery / AJAX).
 - **Web Framework**: ASP.NET Web Forms.
 - **API**: Generic Handlers (.ashx) for AJAX-based communication.
-- **Database Architecture**: SQL Server (LocalDB / Express) with ADO.NET.
 
 ---
 
