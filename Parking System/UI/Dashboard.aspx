@@ -29,7 +29,8 @@
             </div>
             <div class="finance-card">
                 <p class="fc-label">Monthly Revenue</p>
-                <h2 class="fc-value">₹ 12,500</h2>
+                <h2 id="revenue-month" class="fc-value">₹ 0</h2>
+                  
             </div>
         </div>
 

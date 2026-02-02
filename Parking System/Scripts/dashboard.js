@@ -1,4 +1,4 @@
-// dashboard.js - Client-side dashboard functionality
+﻿// dashboard.js - Client-side dashboard functionality
 console.info("dashboard.js loaded");
 
 function logout() {
@@ -60,6 +60,16 @@ function loadStats() {
 
             updateSlotCard("twoWheeler", data.data.TwoWheeler);
             updateSlotCard("fourWheeler", data.data.FourWheeler);
+
+            var today = document.getElementById("revenue-today");
+            var month = document.getElementById("revenue-month");
+
+            if (today) {
+                today.innerText = "₹ " + Number(data.data.RevenueToday || 0).toFixed(2);
+            }
+            if (month) {
+                month.innerText = "₹ " + Number(data.data.RevenueMonth || 0).toFixed(2);
+            }
         })
         .catch(function () {
             console.warn("Failed to load dashboard stats.");

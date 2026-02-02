@@ -164,6 +164,7 @@
     <Content Include="API\vehicleEntry.ashx" />
     <Content Include="API\searchVehicle.ashx" />
     <Content Include="API\dashboardStats.ashx" />
+    <Content Include="API\vehicleExit.ashx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -209,6 +210,9 @@
     </Compile>
     <Compile Include="API\vehicleEntry.ashx.cs">
       <DependentUpon>vehicleEntry.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="API\vehicleExit.ashx.cs">
+      <DependentUpon>vehicleExit.ashx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
