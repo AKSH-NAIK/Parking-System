@@ -23,10 +23,10 @@ A robust and efficient web-based application designed to streamline parking oper
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: HTML5, CSS3, JavaScript, jQuery, FontAwesome Icons.
-- **Backend**: ASP.NET Web Forms (.NET Framework 4.7.2), C#.
-- **Database**: SQL Server (LocalDB / Express).
+- **Backend**: C# (.NET Framework 4.7.2).
+- **Web Framework**: ASP.NET Web Forms.
 - **API**: Generic Handlers (.ashx) for AJAX-based communication.
+- **Database Architecture**: SQL Server (LocalDB / Express) with ADO.NET.
 
 ---
 
@@ -58,58 +58,40 @@ A robust and efficient web-based application designed to streamline parking oper
 
 ---
 
-## 🗄️ Database Configuration
+## 🗄️ Database Connection & Configuration
 
-To set up the database for this project, follow these steps:
+To connect your own database to this project, follow these steps:
 
-1. **Open SQL Server Management Studio (SSMS)** or the **SQL Server Object Explorer** in Visual Studio.
-2. **Connect to your instance**:
-   - Default for LocalDB: `(localdb)\MSSQLLocalDB`
-3. **Create the Database**:
-   - Create a new database named `ParkingSystemDB`.
-4. **Run the Setup Script**:
-   - Open the [database.sql](database.sql) file provided in the root directory.
-   - Copy the SQL content and execute it against the `ParkingSystemDB`.
-   - This script will:
-     - Create tables for `Staff`, `Vehicles`, `ParkingSlots`, and `Transactions`.
-     - Insert initial admin credentials.
-     - Add sample parking slots for 2-wheelers and 4-wheelers.
+### 1. Identify your Connection String
+Depending on your SQL Server setup, your connection string will look different. Here are common examples:
 
-> [!IMPORTANT]
-> **Check Connection String**:
-> The database connection string is currently located in the API handlers (e.g., `API/auth.ashx.cs`, `API/vehicleEntry.ashx.cs`). You MUST update these to match your SQL Server instance.
-
----
-
-## 🌐 Connecting a Custom or Remote Database
-
-If you are not using LocalDB and want to connect to a different SQL Server (like SQL Express or a Remote Server), follow these steps:
-
-### 1. Identify your Connection string
-Depending on your setup, your connection string will look different:
-
+*   **LocalDB (Default)**:
+    ```csharp
+    string connStr = @"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=ParkingSystemDB; Integrated Security=True;";
+    ```
 *   **SQL Server Express**:
     ```csharp
     string connStr = @"Data Source=.\SQLEXPRESS; Initial Catalog=ParkingSystemDB; Integrated Security=True;";
     ```
-*   **SQL Server Authentication (Username/Password)**:
+*   **Remote SQL Server (with Authentication)**:
     ```csharp
     string connStr = @"Data Source=YOUR_SERVER_IP; Initial Catalog=ParkingSystemDB; User ID=your_username; Password=your_password; Encrypt=False;";
     ```
-*   **Remote Server**:
-    Ensure the remote server allows connections and the port (usually `1433`) is open in the firewall.
 
 ### 2. Update the API Handlers
-Search for the variable `connStr` in the following files and replace it with your custom string:
+The project uses the variable `connStr` to manage database connections. You must update this variable in the following files to point to your database:
+
 - `Parking System/API/auth.ashx.cs`
 - `Parking System/API/vehicleEntry.ashx.cs`
 - `Parking System/API/vehicleExit.ashx.cs`
 - `Parking System/API/dashboardStats.ashx.cs`
 - `Parking System/API/searchVehicle.ashx.cs`
 
-> [!TIP]
-> **Best Practice**: For production, it is recommended to move these connection strings into the `<connectionStrings>` section of the `Web.config` file to manage them centrally.
+> [!IMPORTANT]
+> **Database Schema**: Ensure your custom database contains the necessary tables (`Staff`, `Vehicles`, `ParkingSlots`, `Transactions`) with the correct column names as expected by the API logic.
 
+> [!TIP]
+> **Centralized Configuration**: For production, it is recommended to move these connection strings into the `<connectionStrings>` section of the `Web.config` file to manage them centrally.
 
 ---
 
