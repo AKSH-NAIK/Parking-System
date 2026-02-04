@@ -62,6 +62,19 @@ public class vehicleEntry : IHttpHandler, IRequiresSessionState
                 if (existingVehicle != null)
                 {
                     vehicleId = (int)existingVehicle;
+
+                    // Update existing vehicle details to match current entry
+                    string updateVehicleSql = @"UPDATE Vehicles 
+                                              SET OwnerName=@OwnerName, 
+                                                  PhoneNumber=@PhoneNumber, 
+                                                  VehicleType=@VehicleType
+                                              WHERE VehicleId=@VehicleId";
+                    SqlCommand updateVehicleCmd = new SqlCommand(updateVehicleSql, conn);
+                    updateVehicleCmd.Parameters.AddWithValue("@OwnerName", ownerName);
+                    updateVehicleCmd.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+                    updateVehicleCmd.Parameters.AddWithValue("@VehicleType", vehicleType);
+                    updateVehicleCmd.Parameters.AddWithValue("@VehicleId", vehicleId);
+                    updateVehicleCmd.ExecuteNonQuery();
                 }
                 else
                 {
