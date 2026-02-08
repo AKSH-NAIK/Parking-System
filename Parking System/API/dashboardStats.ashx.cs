@@ -13,6 +13,9 @@ public class dashboardStats : IHttpHandler, IRequiresSessionState
     public void ProcessRequest(HttpContext context)
     {
         context.Response.ContentType = "application/json";
+        context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        context.Response.Cache.SetNoStore();
+        context.Response.Expires = -1;
 
         if (context.Session["StaffId"] == null)
         {

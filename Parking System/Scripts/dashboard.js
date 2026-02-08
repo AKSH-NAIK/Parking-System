@@ -53,7 +53,8 @@ function updateSlotCard(prefix, stats) {
 }
 
 function loadStats() {
-    fetch('/API/dashboardStats.ashx', { method: 'GET' })
+    // Add timestamp to prevent caching
+    fetch('/API/dashboardStats.ashx?v=' + new Date().getTime(), { method: 'GET' })
         .then(function (res) { return res.json(); })
         .then(function (data) {
             if (!data.success) return;
@@ -77,6 +78,7 @@ function loadStats() {
 }
 
 function refreshStats() {
+    console.log("Manual Refresh Triggered");
     loadStats();
 }
 

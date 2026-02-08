@@ -13,7 +13,7 @@ namespace Parking_System.API
         private const decimal FourWheelerRatePerHour = 100m;
 
         private const string UpiId = "parking@upi";
-        private const string UpiName = "Parking System";
+        private const string UpiName = "Parking Fees";
 
         public void ProcessRequest(HttpContext context)
         {
