@@ -13,6 +13,7 @@
     </asp:PlaceHolder>
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link rel="stylesheet" href='<%= ResolveUrl("~/Styles/site.css") %>?v=3' />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
@@ -37,28 +38,20 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" runat="server" href="~/">Application name</a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">About</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
-                    </ul>
-                </div>
+        <nav class="dash-header" style="margin: 0 auto 2rem; max-width: 1200px; padding: 1rem 15px;">
+            <a class="pc-link" style="font-size: 1.25rem; color: var(--text-main);" runat="server" href="~/">PARKING SYSTEM</a>
+            <div style="display: flex; gap: 20px;">
+                <a class="pc-link" runat="server" href="~/">Home</a>
+                <a class="pc-link" runat="server" href="~/About">About</a>
+                <a class="pc-link" runat="server" href="~/Contact">Contact</a>
             </div>
         </nav>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+            <hr style="border-color: var(--border); margin: 2rem 0;" />
+            <footer style="text-align: center; padding-bottom: 2rem;">
+                <p>&copy; <%: DateTime.Now.Year %> - Parking Management System</p>
             </footer>
         </div>
     </form>

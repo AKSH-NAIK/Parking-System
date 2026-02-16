@@ -7,7 +7,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Search Vehicle</title>
-        <link rel="stylesheet" href="../Styles/site.css" type="text/css" />
+        <link rel="stylesheet" href="../Styles/site.css?v=4" type="text/css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     </head>
 
@@ -21,7 +21,7 @@
             <div style="display: flex; gap: 0.75rem; margin: 2rem 0;">
                 <input type="text" id="searchInput" placeholder="Enter vehicle number (e.g., MH12AB1234)"
                     autocomplete="off" style="flex: 1; margin-bottom: 0;" />
-                <button onclick="performSearch()" style="width: auto; min-width: 120px; margin: 0;">
+                <button onclick="performSearch()" class="primary" style="width: auto; min-width: 120px; margin: 0;">
                     <i class="fas fa-search" style="margin-right: 0.5rem;"></i>Search
                 </button>
             </div>

@@ -7,7 +7,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>4-Wheeler Entry</title>
-        <link rel="stylesheet" href="../Styles/site.css" type="text/css" />
+        <link rel="stylesheet" href="../Styles/site.css?v=4" type="text/css" />
     </head>
 
     <body>
@@ -31,7 +31,7 @@
             </div>
             <input type="datetime-local" id="entryTime" disabled />
 
-            <button onclick="VehicleEntry.submitEntry()">Allocate Slot</button>
+            <button onclick="VehicleEntry.submitEntry()" class="primary">Allocate Slot</button>
 
             <div id="result" class="message success"></div>
 
@@ -40,7 +40,7 @@
 
         <script src="../Scripts/vehicleEntry.js"></script>
         <script>
-            window.addEventListener('DOMContentLoaded', function() {
+            window.addEventListener('DOMContentLoaded', function () {
                 VehicleEntry.init('4-Wheeler');
             });
         </script>

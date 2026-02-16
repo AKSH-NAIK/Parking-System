@@ -7,7 +7,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Vehicle Exit</title>
-        <link rel="stylesheet" href="../Styles/site.css" type="text/css" />
+        <link rel="stylesheet" href="../Styles/site.css?v=4" type="text/css" />
     </head>
 
     <body>
@@ -21,7 +21,7 @@
                 <label>Vehicle Number</label>
                 <input type="text" id="vehicleNumber" placeholder="MH12AB1234" />
 
-                <button onclick="fetchVehicleData()">Fetch Details</button>
+                <button onclick="fetchVehicleData()" class="primary">Fetch Details</button>
 
                 <div id="fetchResult"></div>
 
@@ -56,7 +56,7 @@
                 </div>
                 <input type="datetime-local" id="exitTime" disabled />
 
-                <button onclick="processExit()">Process Exit</button>
+                <button onclick="processExit()" class="primary">Process Exit</button>
 
                 <div id="exitResult"></div>
 

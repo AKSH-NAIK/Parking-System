@@ -9,14 +9,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Staff Login - Parking Management System</title>
 
-        <link rel="stylesheet" href="../Styles/site.css?v=3" type="text/css" />
+        <link rel="stylesheet" href="../Styles/site.css?v=4" type="text/css" />
     </head>
 
     <body>
 
         <div class="card" role="main" aria-labelledby="loginHeading">
-            <h1 id="loginHeading">Parking Management System</h1>
-            <p class="subtitle">Staff Login Portal</p>
+            <h1 id="loginHeading" style="text-align: center;">PARKING SYSTEM</h1>
+            <p class="subtitle" style="text-align: center; margin-bottom: 2rem;">Staff Login Portal</p>
 
             <div class="login-box">
                 <label for="txtStaffId">Staff ID</label>
@@ -34,7 +34,7 @@
                     </button>
                 </div>
 
-                <button type="button" id="btnLogin">Login</button>
+                <button type="button" id="btnLogin" class="primary">Login</button>
             </div>
 
             <div class="demo-credentials" aria-hidden="true">
