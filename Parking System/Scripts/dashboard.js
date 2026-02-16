@@ -71,14 +71,42 @@ function loadStats() {
             if (month) {
                 month.innerText = "₹ " + Number(data.data.RevenueMonth || 0).toFixed(2);
             }
+
+            // Trigger fade-in animation
+            var params = ['.financials-grid', '.dash-grid-2col'];
+            params.forEach(function (sel) {
+                var el = document.querySelector(sel);
+                if (el) {
+                    el.classList.remove('stats-loading');
+                    el.classList.remove('stats-updated');
+                    // Force reflow
+                    void el.offsetWidth;
+                    el.classList.add('stats-updated');
+                }
+            });
+
         })
         .catch(function () {
             console.warn("Failed to load dashboard stats.");
+            // Remove loading class on error too
+            var params = ['.financials-grid', '.dash-grid-2col'];
+            params.forEach(function (sel) {
+                var el = document.querySelector(sel);
+                if (el) el.classList.remove('stats-loading');
+            });
         });
 }
 
 function refreshStats() {
     console.log("Manual Refresh Triggered");
+
+    // Add loading state
+    var params = ['.financials-grid', '.dash-grid-2col'];
+    params.forEach(function (sel) {
+        var el = document.querySelector(sel);
+        if (el) el.classList.add('stats-loading');
+    });
+
     loadStats();
 }
 
