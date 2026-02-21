@@ -40,7 +40,7 @@ function renderResults(items) {
 
     var html = items.map(function (v) {
         return `
-            <div style="text-align: left; padding: 1rem; border-radius: 12px; background: #fff; border: 1px solid #f1f5f9; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 1rem;">
+            <div style="text-align: left; padding: 1.25rem; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow); margin-bottom: 1rem;">
                 <strong>${escapeHtml(v.vehicleNumber)}</strong> (${escapeHtml(v.vehicleType)})<br/>
                 Owner: ${escapeHtml(v.ownerName)}<br/>
                 Phone: ${escapeHtml(v.phoneNumber)}<br/>

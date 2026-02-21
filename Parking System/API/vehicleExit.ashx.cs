@@ -97,7 +97,7 @@ namespace Parking_System.API
                             transactionId = Convert.ToInt32(reader["TransactionId"]),
                             ownerName = reader["OwnerName"].ToString(),
                             phoneNumber = reader["PhoneNumber"].ToString(),
-                            vehicleNumber = reader["VehicleNumber"].ToString(),
+                            vehicleNumber = reader["VehicleNumber"].ToString().ToUpperInvariant(),
                             vehicleType = reader["VehicleType"].ToString(),
                             entryTime = Convert.ToDateTime(reader["EntryTime"]).ToString("yyyy-MM-dd HH:mm:ss"),
                             slotNumber = reader["SlotNumber"].ToString(),

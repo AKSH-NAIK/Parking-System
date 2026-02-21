@@ -63,7 +63,7 @@ public class searchVehicle : IHttpHandler, IRequiresSessionState
                             {
                                 OwnerName = reader["OwnerName"].ToString(),
                                 PhoneNumber = reader["PhoneNumber"].ToString(),
-                                VehicleNumber = reader["VehicleNumber"].ToString(),
+                                VehicleNumber = reader["VehicleNumber"].ToString().ToUpperInvariant(),
                                 VehicleType = reader["VehicleType"].ToString(),
                                 EntryTime = Convert.ToDateTime(reader["EntryTime"]).ToString("yyyy-MM-dd HH:mm:ss"),
                                 SlotNumber = reader["SlotNumber"].ToString(),

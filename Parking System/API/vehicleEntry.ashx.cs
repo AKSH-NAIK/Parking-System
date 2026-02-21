@@ -13,7 +13,7 @@ public class vehicleEntry : IHttpHandler, IRequiresSessionState
         {
             string ownerName = context.Request.Form["ownerName"];
             string phoneNumber = context.Request.Form["phoneNumber"];
-            string vehicleNumber = context.Request.Form["vehicleNumber"];
+            string vehicleNumber = (context.Request.Form["vehicleNumber"] ?? "").Trim().ToUpperInvariant();
             string vehicleType = context.Request.Form["vehicleType"];
             string entryTimeStr = context.Request.Form["entryTime"];
 

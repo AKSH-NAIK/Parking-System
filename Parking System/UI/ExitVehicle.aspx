@@ -19,7 +19,7 @@
                 <p class="subtitle">Enter vehicle number to fetch parking details</p>
 
                 <label>Vehicle Number</label>
-                <input type="text" id="vehicleNumber" placeholder="MH12AB1234" />
+                <input type="text" id="vehicleNumber" placeholder="MH12AB1234" style="text-transform: uppercase;" />
 
                 <button onclick="fetchVehicleData()" class="primary">Fetch Details</button>
 

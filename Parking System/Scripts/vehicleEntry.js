@@ -32,7 +32,7 @@ const VehicleEntry = (function () {
     function submitEntry() {
         const ownerName = document.getElementById("ownerName")?.value.trim();
         const phoneNumber = document.getElementById("phoneNumber")?.value.trim();
-        const vehicleNumber = document.getElementById("vehicleNumber")?.value.trim();
+        const vehicleNumber = document.getElementById("vehicleNumber")?.value.trim().toUpperCase();
         const useSystemTime = document.getElementById("useSystemTime")?.checked;
         const resultDiv = document.getElementById("result");
 
