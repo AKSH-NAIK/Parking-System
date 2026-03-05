@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Dashboard</title>
         <link rel="stylesheet" href="../Styles/site.css?v=4" type="text/css" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
 
     <body>
@@ -25,12 +26,28 @@
             <div class="financials-grid">
                 <div class="finance-card">
                     <p class="fc-label">Today's Revenue</p>
-                    <h2 id="revenue-today" class="fc-value">₹ 0</h2>
+                    <h2 id="revenue-today" class="fc-value">&#8377; 0</h2>
                 </div>
                 <div class="finance-card">
                     <p class="fc-label">Monthly Revenue</p>
-                    <h2 id="revenue-month" class="fc-value">₹ 0</h2>
+                    <h2 id="revenue-month" class="fc-value">&#8377; 0</h2>
 
+                </div>
+            </div>
+
+            <h2 class="section-title">Analytics</h2>
+            <div class="financials-grid" style="margin-bottom: 2rem;">
+                <div class="parking-card" style="padding: 1.5rem;">
+                    <p class="fc-label">Overall Occupancy</p>
+                    <div style="height: 200px; position: relative;">
+                        <canvas id="occupancyChart"></canvas>
+                    </div>
+                </div>
+                <div class="parking-card" style="padding: 1.5rem;">
+                    <p class="fc-label">Revenue Breakdown (Today vs Month)</p>
+                    <div style="height: 200px; position: relative;">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
                 </div>
             </div>
 

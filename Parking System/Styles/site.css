@@ -1,8 +1,18 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
+    /* Base Variables (Shared) */
     --primary: #00ffc3;
     --primary-muted: rgba(0, 255, 195, 0.1);
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Dark Theme (Default) */
+[data-theme="dark"],
+:root:not([data-theme="light"]) {
     --background: #0a0a0a;
     --surface: #121212;
     --surface-hover: #1a1a1a;
@@ -10,13 +20,21 @@
     --text-muted: #a1a1aa;
     --border: #262626;
     --border-hover: #404040;
-
-    --success: #10b981;
-    --danger: #ef4444;
-    --warning: #f59e0b;
-
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    --ease: cubic-bezier(0.2, 0, 0, 1);
+    --input-bg: #000;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --surface-hover: #f1f5f9;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --border-hover: #cbd5e1;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --input-bg: #ffffff;
 }
 
 /* Reset */
@@ -51,6 +69,133 @@ body {
 @media screen and (min-width: 768px) {
     .body-content {
         padding: 0;
+    }
+
+    #toast-container {
+        top: 1rem;
+        right: 1rem;
+        left: 1rem;
+    }
+
+    .toast {
+        min-width: unset;
+        width: 100%;
+    }
+}
+
+/* Notifications */
+#toast-container {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    pointer-events: none;
+}
+
+.toast {
+    background: var(--surface);
+    color: var(--text-main);
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 300px;
+    max-width: 450px;
+    animation: slideIn 0.3s var(--ease);
+    pointer-events: all;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.toast.success {
+    border-left: 4px solid var(--success);
+}
+
+.toast.error {
+    border-left: 4px solid var(--danger);
+}
+
+.toast.warning {
+    border-left: 4px solid var(--warning);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    background: var(--surface-hover);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s var(--ease);
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* Print Styles */
+@media print {
+    @page {
+        margin: 0;
+        size: auto;
+    }
+
+    body>*:not(.card),
+    .card>*:not(#printTemplate),
+    .theme-toggle,
+    .back-button,
+    .primary,
+    #toast-container {
+        display: none !important;
+    }
+
+    body {
+        background: #fff !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    #printTemplate {
+        display: block !important;
+        visibility: visible !important;
+        position: static;
+        width: 100%;
+        max-width: 80mm;
+        margin: 0 auto;
+        padding: 10mm 5mm;
+        color: #000 !important;
+        background: #fff !important;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 11pt;
+        line-height: 1.4;
+    }
+
+    #printTemplate * {
+        visibility: visible !important;
     }
 }
 
@@ -120,9 +265,9 @@ select {
     border: 1px solid var(--border);
     border-radius: 0.5rem;
     font-size: 1rem;
-    background: #000;
-    color: #fff;
-    transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    background: var(--input-bg);
+    color: var(--text-main);
+    transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), background-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 
 input:focus,
@@ -434,4 +579,12 @@ button.primary {
         align-items: flex-start;
         gap: 1rem;
     }
+}
+
+/* QR Section Centering */
+#qrSection {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }

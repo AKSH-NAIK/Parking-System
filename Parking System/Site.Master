@@ -13,9 +13,17 @@
     </asp:PlaceHolder>
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
-    <link rel="stylesheet" href='<%= ResolveUrl("~/Styles/site.css") %>?v=3' />
+    <link rel="stylesheet" href='<%= ResolveUrl("~/Styles/site.css") %>?v=4' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
+    <script>
+        // Set theme before page renders to prevent flicker
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
 </head>
 <body>
     <form runat="server">
@@ -40,10 +48,15 @@
 
         <nav class="dash-header" style="margin: 0 auto 2rem; max-width: 1200px; padding: 1rem 15px;">
             <a class="pc-link" style="font-size: 1.25rem; color: var(--text-main);" runat="server" href="~/">PARKING SYSTEM</a>
-            <div style="display: flex; gap: 20px;">
+            <div style="display: flex; gap: 20px; align-items: center;">
                 <a class="pc-link" runat="server" href="~/">Home</a>
                 <a class="pc-link" runat="server" href="~/About">About</a>
                 <a class="pc-link" runat="server" href="~/Contact">Contact</a>
+                
+                <div class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-sun sun-icon"></i>
+                    <i class="fas fa-moon moon-icon"></i>
+                </div>
             </div>
         </nav>
         <div class="container body-content">
@@ -55,6 +68,16 @@
             </footer>
         </div>
     </form>
+    <script src='<%= ResolveUrl("~/Scripts/notifications.js") %>'></script>
+    <script>
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
     </asp:PlaceHolder>

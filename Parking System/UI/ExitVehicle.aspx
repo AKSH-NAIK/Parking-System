@@ -57,17 +57,42 @@
                 <input type="datetime-local" id="exitTime" disabled />
 
                 <button onclick="processExit()" class="primary">Process Exit</button>
+                <button id="printReceiptBtn" onclick="window.print()" class="btn"
+                    style="display: none; margin-top: 0.5rem; background: var(--success); color: #fff; border-color: var(--success);">
+                    <i class="fas fa-print" style="margin-right: 0.5rem;"></i>Print Receipt
+                </button>
 
                 <div id="exitResult"></div>
 
-                <div id="qrSection" style="display: none; margin-top: 1rem;">
+                <div id="qrSection"
+                    style="display: none; margin-top: 1rem; flex-direction: column; align-items: center; text-align: center;">
                     <p class="subtitle">Pay using UPI</p>
                     <img id="upiQr" alt="UPI QR Code"
-                        style="width: 200px; height: 200px; border-radius: 12px; border: 1px solid #e2e8f0;" />
+                        style="width: 200px; height: 200px; border-radius: 12px; border: 1px solid #e2e8f0; margin: 0 auto;" />
                     <p id="amountText" style="margin-top: 0.75rem; font-weight: 600;"></p>
                 </div>
 
                 <button class="back-button" onclick="window.location.href='Dashboard.aspx'">Back To Dashboard</button>
+            </div>
+
+            <!-- Print Template -->
+            <div id="printTemplate" style="display: none;">
+                <h2 style="text-align: center; border-bottom: 2px dashed #000; padding-bottom: 5mm;">EXIT BILL</h2>
+                <div style="margin: 5mm 0;">
+                    <p><strong>Vehicle:</strong> <span id="p_vehicleNumber"></span></p>
+                    <p><strong>Owner:</strong> <span id="p_ownerName"></span></p>
+                    <p><strong>Phone:</strong> <span id="p_phoneNumber"></span></p>
+                    <p><strong>Slot:</strong> <span id="p_slotNumber"></span></p>
+                    <hr style="border: 0; border-top: 1px dashed #000; margin: 3mm 0;">
+                    <p><strong>Entry:</strong> <span id="p_entryTime"></span></p>
+                    <p><strong>Exit:</strong> <span id="p_exitTime"></span></p>
+                    <hr style="border: 0; border-top: 1px dashed #000; margin: 3mm 0;">
+                    <p style="font-size: 1.2rem; font-weight: 800;"><strong>Total Amount:</strong> &#8377; <span
+                            id="p_amount"></span></p>
+                </div>
+                <div style="border-top: 1px solid #000; padding-top: 3mm; font-size: 0.8rem; text-align: center;">
+                    <p>Thank you for parking with us!</p>
+                </div>
             </div>
         </div>
 
@@ -173,6 +198,19 @@
                         document.getElementById("upiQr").src = qrUrl;
                         document.getElementById("amountText").innerText = "Amount: " + Number(result.amount).toFixed(2);
                         document.getElementById("qrSection").style.display = "block";
+
+                        // Setup Print Template
+                        document.getElementById("p_vehicleNumber").innerText = result.vehicleNumber;
+                        document.getElementById("p_ownerName").innerText = document.getElementById("ownerName").value;
+                        document.getElementById("p_phoneNumber").innerText = document.getElementById("phoneNumber").value;
+                        document.getElementById("p_slotNumber").innerText = result.slotNumber;
+                        document.getElementById("p_entryTime").innerText = document.getElementById("entryTime").value;
+                        document.getElementById("p_exitTime").innerText = new Date().toLocaleString();
+                        document.getElementById("p_amount").innerText = Number(result.amount).toFixed(2);
+
+                        document.getElementById("printReceiptBtn").style.display = 'inline-flex';
+                        document.getElementById("qrSection").style.setProperty('display', 'flex', 'important');
+                        if (typeof Toast !== 'undefined') Toast.success("Vehicle exit processed!");
                     })
                     .catch(function () {
                         document.getElementById("exitResult").className = "message error";

@@ -52,6 +52,77 @@ function updateSlotCard(prefix, stats) {
     document.getElementById(prefix + "AvailableBar").style.width = stats.AvailablePercent + "%";
 }
 
+// Chart instances
+let occupancyChart = null;
+let revenueChart = null;
+
+function initCharts() {
+    const ctxOcc = document.getElementById('occupancyChart');
+    const ctxRev = document.getElementById('revenueChart');
+
+    if (ctxOcc) {
+        occupancyChart = new Chart(ctxOcc, {
+            type: 'doughnut',
+            data: {
+                labels: ['Occupied', 'Available'],
+                datasets: [{
+                    data: [0, 100],
+                    backgroundColor: ['#ef4444', '#10b981'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { color: '#a1a1aa' } }
+                }
+            }
+        });
+    }
+
+    if (ctxRev) {
+        revenueChart = new Chart(ctxRev, {
+            type: 'bar',
+            data: {
+                labels: ['Today', 'Month'],
+                datasets: [{
+                    label: 'Revenue (₹)',
+                    data: [0, 0],
+                    backgroundColor: ['#00ffc3', '#0EA5E9'],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, grid: { color: '#262626' }, ticks: { color: '#a1a1aa' } },
+                    x: { grid: { display: false }, ticks: { color: '#a1a1aa' } }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    }
+}
+
+function updateCharts(data) {
+    if (occupancyChart && data.TwoWheeler && data.FourWheeler) {
+        const totalOcc = data.TwoWheeler.Occupied + data.FourWheeler.Occupied;
+        const totalAvail = data.TwoWheeler.Available + data.FourWheeler.Available;
+        occupancyChart.data.datasets[0].data = [totalOcc, totalAvail];
+        occupancyChart.update();
+    }
+
+    if (revenueChart) {
+        revenueChart.data.datasets[0].data = [data.RevenueToday || 0, data.RevenueMonth || 0];
+        revenueChart.update();
+    }
+}
+
 function loadStats() {
     // Add timestamp to prevent caching
     fetch('/API/dashboardStats.ashx?v=' + new Date().getTime(), { method: 'GET' })
@@ -61,15 +132,16 @@ function loadStats() {
 
             updateSlotCard("twoWheeler", data.data.TwoWheeler);
             updateSlotCard("fourWheeler", data.data.FourWheeler);
+            updateCharts(data.data);
 
             var today = document.getElementById("revenue-today");
             var month = document.getElementById("revenue-month");
 
             if (today) {
-                today.innerText = "₹ " + Number(data.data.RevenueToday || 0).toFixed(2);
+                today.innerText = "\u20B9 " + Number(data.data.RevenueToday || 0).toFixed(2);
             }
             if (month) {
-                month.innerText = "₹ " + Number(data.data.RevenueMonth || 0).toFixed(2);
+                month.innerText = "\u20B9 " + Number(data.data.RevenueMonth || 0).toFixed(2);
             }
 
             // Trigger fade-in animation
@@ -114,6 +186,7 @@ setInterval(updateTime, 1000);
 updateTime();
 
 document.addEventListener('DOMContentLoaded', function () {
+    initCharts();
     loadStats();
     setInterval(loadStats, 10000); // refresh every 10 seconds
 });

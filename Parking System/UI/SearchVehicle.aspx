@@ -24,6 +24,9 @@
                 <button onclick="performSearch()" class="primary" style="margin: 0;">
                     <i class="fas fa-search" style="margin-right: 0.5rem;"></i>Search
                 </button>
+                <button onclick="exportToCSV()" class="back-button" style="margin: 0;">
+                    <i class="fas fa-file-export" style="margin-right: 0.5rem;"></i>Export
+                </button>
             </div>
         </div>
 

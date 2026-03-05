@@ -29,20 +29,28 @@ const VehicleEntry = (function () {
         }
     }
 
+    function printReceipt() {
+        window.print();
+    }
+
     function submitEntry() {
         const ownerName = document.getElementById("ownerName")?.value.trim();
         const phoneNumber = document.getElementById("phoneNumber")?.value.trim();
         const vehicleNumber = document.getElementById("vehicleNumber")?.value.trim().toUpperCase();
         const useSystemTime = document.getElementById("useSystemTime")?.checked;
         const resultDiv = document.getElementById("result");
+        const printBtn = document.getElementById("printReceiptBtn");
 
         if (!ownerName || !phoneNumber || !vehicleNumber) {
             resultDiv.className = "message error";
             resultDiv.innerText = "Please fill in all fields";
+            if (typeof Toast !== 'undefined') Toast.error("Missing information");
             return;
         }
 
         let entryTime = "";
+        let displayedTime = new Date().toLocaleString();
+
         if (!useSystemTime) {
             entryTime = document.getElementById("entryTime").value;
             if (!entryTime) {
@@ -50,10 +58,12 @@ const VehicleEntry = (function () {
                 resultDiv.innerText = "Please select entry time";
                 return;
             }
+            displayedTime = new Date(entryTime).toLocaleString();
         }
 
         resultDiv.className = "message info";
         resultDiv.innerText = "Allocating slot...";
+        if (printBtn) printBtn.style.display = 'none';
 
         const formData = new URLSearchParams();
         formData.append("ownerName", ownerName);
@@ -72,7 +82,19 @@ const VehicleEntry = (function () {
                 if (data.success) {
                     resultDiv.className = "message success";
                     resultDiv.innerText = data.message;
+                    if (typeof Toast !== 'undefined') Toast.success("Slot allocated: " + data.slotNumber);
 
+                    // Setup Print Template
+                    document.getElementById("p_vehicleNumber").innerText = vehicleNumber;
+                    document.getElementById("p_vehicleType").innerText = vehicleType;
+                    document.getElementById("p_ownerName").innerText = ownerName;
+                    document.getElementById("p_phoneNumber").innerText = phoneNumber;
+                    document.getElementById("p_slotNumber").innerText = data.slotNumber;
+                    document.getElementById("p_entryTime").innerText = displayedTime;
+
+                    if (printBtn) printBtn.style.display = 'inline-flex';
+
+                    // Clear form after delay
                     setTimeout(() => {
                         document.getElementById("ownerName").value = "";
                         document.getElementById("phoneNumber").value = "";
@@ -80,10 +102,11 @@ const VehicleEntry = (function () {
                         document.getElementById("entryTime").value = "";
                         document.getElementById("useSystemTime").checked = true;
                         toggleTimeInput();
-                    }, 2000);
+                    }, 5000); // Wait longer so they can print
                 } else {
                     resultDiv.className = "message error";
                     resultDiv.innerText = data.message;
+                    if (typeof Toast !== 'undefined') Toast.error(data.message);
                 }
             })
             .catch(() => {
@@ -95,6 +118,7 @@ const VehicleEntry = (function () {
     return {
         init,
         toggleTimeInput,
-        submitEntry
+        submitEntry,
+        printReceipt
     };
 })();

@@ -32,8 +32,30 @@
             <input type="datetime-local" id="entryTime" disabled />
 
             <button onclick="VehicleEntry.submitEntry()" class="primary">Allocate Slot</button>
+            <button id="printReceiptBtn" onclick="VehicleEntry.printReceipt()" class="btn"
+                style="display: none; margin-top: 0.5rem; background: var(--success); color: #fff; border-color: var(--success);">
+                <i class="fas fa-print" style="margin-right: 0.5rem;"></i>Print Receipt
+            </button>
 
             <div id="result" class="message success"></div>
+
+            <!-- Print Template -->
+            <div id="printTemplate" style="display: none;">
+                <h2 style="text-align: center; border-bottom: 2px dashed #000; padding-bottom: 5mm;">PARKING RECEIPT
+                </h2>
+                <div style="margin: 5mm 0;">
+                    <p><strong>Vehicle:</strong> <span id="p_vehicleNumber"></span></p>
+                    <p><strong>Type:</strong> <span id="p_vehicleType"></span></p>
+                    <p><strong>Owner:</strong> <span id="p_ownerName"></span></p>
+                    <p><strong>Phone:</strong> <span id="p_phoneNumber"></span></p>
+                    <p><strong>Slot:</strong> <span id="p_slotNumber"
+                            style="font-size: 1.5rem; font-weight: 800;"></span></p>
+                </div>
+                <div style="border-top: 1px solid #000; padding-top: 3mm; font-size: 0.8rem;">
+                    <p><strong>Entry Time:</strong> <span id="p_entryTime"></span></p>
+                    <p style="margin-top: 5mm; text-align: center;">--- Keep this slip safe ---</p>
+                </div>
+            </div>
 
             <button class="back-button" onclick="window.location.href='Dashboard.aspx'">Back to Dashboard</button>
         </div>
