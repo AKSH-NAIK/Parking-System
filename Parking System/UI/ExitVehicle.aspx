@@ -97,6 +97,18 @@
         </div>
 
         <script>
+            function formatDateTime(date) {
+                if (!date) return "";
+                const d = new Date(date);
+                const year = d.getFullYear();
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const day = String(d.getDate()).padStart(2, '0');
+                const hours = String(d.getHours()).padStart(2, '0');
+                const minutes = String(d.getMinutes()).padStart(2, '0');
+                const seconds = String(d.getSeconds()).padStart(2, '0');
+                return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            }
+
             function toggleTimeInput() {
                 const useSystem = document.getElementById("useSystemTime").checked;
                 const timeInput = document.getElementById("exitTime");
@@ -204,8 +216,8 @@
                         document.getElementById("p_ownerName").innerText = document.getElementById("ownerName").value;
                         document.getElementById("p_phoneNumber").innerText = document.getElementById("phoneNumber").value;
                         document.getElementById("p_slotNumber").innerText = result.slotNumber;
-                        document.getElementById("p_entryTime").innerText = document.getElementById("entryTime").value;
-                        document.getElementById("p_exitTime").innerText = new Date().toLocaleString();
+                        document.getElementById("p_entryTime").innerText = formatDateTime(document.getElementById("entryTime").value);
+                        document.getElementById("p_exitTime").innerText = formatDateTime(useSystemTime ? new Date() : exitTime);
                         document.getElementById("p_amount").innerText = Number(result.amount).toFixed(2);
 
                         document.getElementById("printReceiptBtn").style.display = 'inline-flex';
