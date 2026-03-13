@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
     /* Base Variables (Shared) */
@@ -581,6 +581,7 @@ button.primary {
     }
 }
 
+
 /* QR Section Centering */
 #qrSection {
     display: none;
@@ -588,3 +589,91 @@ button.primary {
     align-items: center;
     text-align: center;
 }
+
+/* Refresh UX Enhancements */
+.dashboard-content {
+    transition: filter 0.5s var(--ease), opacity 0.5s var(--ease);
+}
+
+.dashboard-content.refreshing {
+    filter: blur(8px);
+    opacity: 0.6;
+    pointer-events: none;
+    user-select: none;
+}
+
+.refresh-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    opacity: 0;
+    transition: opacity 0.300s ease;
+}
+
+.refresh-overlay.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.spinner-container {
+    text-align: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--primary-muted);
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+    box-shadow: 0 0 15px var(--primary-muted);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.refresh-overlay p {
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Stat Update Animation */
+@keyframes pulse-stat {
+    0% { transform: scale(1); color: var(--primary); }
+    50% { transform: scale(1.1); color: #fff; }
+    100% { transform: scale(1); color: var(--primary); }
+}
+
+.stat-update-pulse {
+    animation: pulse-stat 0.5s ease;
+}
+
+.fade-in-smooth {
+    animation: fadeInSmooth 0.5s var(--ease) forwards;
+}
+
+@keyframes fadeInSmooth {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

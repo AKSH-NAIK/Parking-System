@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="ParkingSystem.Dashboard" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="ParkingSystem.Dashboard" %>
     <!DOCTYPE html>
     <html>
 
@@ -11,8 +11,15 @@
     </head>
 
     <body>
+        <div id="refresh-overlay" class="refresh-overlay">
+            <div class="spinner-container">
+                <div class="spinner"></div>
+                <p>Refreshing Dashboard Stats...</p>
+            </div>
+        </div>
 
-        <div class="card wide">
+        <div id="dashboard-content" class="dashboard-content">
+            <div class="card wide">
             <div class="dash-header">
                 <h1>DASHBOARD</h1>
                 <div style="display: flex; gap: 20px; align-items: center;">

@@ -1,4 +1,4 @@
-﻿// dashboard.js - Client-side dashboard functionality
+// dashboard.js - Client-side dashboard functionality
 console.info("dashboard.js loaded");
 
 function logout() {
@@ -123,39 +123,53 @@ function updateCharts(data) {
     }
 }
 
-function loadStats() {
+function loadStats(isManualRefresh = false) {
     // Add timestamp to prevent caching
     fetch('/API/dashboardStats.ashx?v=' + new Date().getTime(), { method: 'GET' })
         .then(function (res) { return res.json(); })
         .then(function (data) {
-            if (!data.success) return;
-
-            updateSlotCard("twoWheeler", data.data.TwoWheeler);
-            updateSlotCard("fourWheeler", data.data.FourWheeler);
-            updateCharts(data.data);
-
-            var today = document.getElementById("revenue-today");
-            var month = document.getElementById("revenue-month");
-
-            if (today) {
-                today.innerText = "\u20B9 " + Number(data.data.RevenueToday || 0).toFixed(2);
-            }
-            if (month) {
-                month.innerText = "\u20B9 " + Number(data.data.RevenueMonth || 0).toFixed(2);
+            if (!data.success) {
+                if (isManualRefresh) endGlobalRefresh();
+                return;
             }
 
-            // Trigger fade-in animation
-            var params = ['.financials-grid', '.dash-grid-2col'];
-            params.forEach(function (sel) {
-                var el = document.querySelector(sel);
-                if (el) {
-                    el.classList.remove('stats-loading');
-                    el.classList.remove('stats-updated');
-                    // Force reflow
-                    void el.offsetWidth;
-                    el.classList.add('stats-updated');
+            // If manual refresh, wait a bit for "feeling"
+            const delay = isManualRefresh ? 800 : 0;
+
+            setTimeout(() => {
+                updateSlotCard("twoWheeler", data.data.TwoWheeler);
+                updateSlotCard("fourWheeler", data.data.FourWheeler);
+                updateCharts(data.data);
+
+                var today = document.getElementById("revenue-today");
+                var month = document.getElementById("revenue-month");
+
+                if (today) {
+                    today.innerText = "\u20B9 " + Number(data.data.RevenueToday || 0).toFixed(2);
+                    if (isManualRefresh) pulseElement(today);
                 }
-            });
+                if (month) {
+                    month.innerText = "\u20B9 " + Number(data.data.RevenueMonth || 0).toFixed(2);
+                    if (isManualRefresh) pulseElement(month);
+                }
+
+                // Trigger fade-in animation
+                var params = ['.financials-grid', '.dash-grid-2col'];
+                params.forEach(function (sel) {
+                    var el = document.querySelector(sel);
+                    if (el) {
+                        el.classList.remove('stats-loading');
+                        el.classList.remove('stats-updated');
+                        // Force reflow
+                        void el.offsetWidth;
+                        el.classList.add('stats-updated');
+                    }
+                });
+
+                if (isManualRefresh) {
+                    endGlobalRefresh();
+                }
+            }, delay);
 
         })
         .catch(function () {
@@ -166,20 +180,44 @@ function loadStats() {
                 var el = document.querySelector(sel);
                 if (el) el.classList.remove('stats-loading');
             });
+            if (isManualRefresh) endGlobalRefresh();
         });
+}
+
+function startGlobalRefresh() {
+    const content = document.getElementById('dashboard-content');
+    const overlay = document.getElementById('refresh-overlay');
+    if (content) content.classList.add('refreshing');
+    if (overlay) overlay.classList.add('visible');
+}
+
+function endGlobalRefresh() {
+    const content = document.getElementById('dashboard-content');
+    const overlay = document.getElementById('refresh-overlay');
+
+    if (overlay) {
+        overlay.classList.remove('visible');
+    }
+
+    setTimeout(() => {
+        if (content) {
+            content.classList.remove('refreshing');
+            content.classList.add('fade-in-smooth');
+            setTimeout(() => content.classList.remove('fade-in-smooth'), 600);
+        }
+    }, 300);
+}
+
+function pulseElement(el) {
+    el.classList.remove('stat-update-pulse');
+    void el.offsetWidth; // force reflow
+    el.classList.add('stat-update-pulse');
 }
 
 function refreshStats() {
     console.log("Manual Refresh Triggered");
-
-    // Add loading state
-    var params = ['.financials-grid', '.dash-grid-2col'];
-    params.forEach(function (sel) {
-        var el = document.querySelector(sel);
-        if (el) el.classList.add('stats-loading');
-    });
-
-    loadStats();
+    startGlobalRefresh();
+    loadStats(true);
 }
 
 setInterval(updateTime, 1000);
