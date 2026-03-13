@@ -185,18 +185,34 @@ function loadStats(isManualRefresh = false) {
 }
 
 function startGlobalRefresh() {
+    console.log("Global Refresh Start - Showing Overlay");
     const content = document.getElementById('dashboard-content');
     const overlay = document.getElementById('refresh-overlay');
+    const refreshBtn = document.getElementById('btnRefreshStats');
+
     if (content) content.classList.add('refreshing');
     if (overlay) overlay.classList.add('visible');
+    
+    if (refreshBtn) {
+        refreshBtn.disabled = true;
+        refreshBtn.dataset.originalText = refreshBtn.innerText;
+        refreshBtn.innerText = "Refreshing...";
+    }
 }
 
 function endGlobalRefresh() {
     const content = document.getElementById('dashboard-content');
     const overlay = document.getElementById('refresh-overlay');
+    const refreshBtn = document.getElementById('btnRefreshStats');
 
     if (overlay) {
         overlay.classList.remove('visible');
+    }
+
+    if (refreshBtn) {
+        refreshBtn.disabled = false;
+        refreshBtn.innerText = refreshBtn.dataset.originalText || "Refresh Stats";
+        pulseElement(refreshBtn);
     }
 
     setTimeout(() => {

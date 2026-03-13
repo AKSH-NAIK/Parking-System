@@ -6,7 +6,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Dashboard</title>
-        <link rel="stylesheet" href="../Styles/site.css?v=4" type="text/css" />
+        <link rel="stylesheet" href="../Styles/site.css?v=111" type="text/css" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
 
@@ -150,12 +150,13 @@
 
             <div class="actions-grid">
                 <button onclick="searchVehicle()">Search Vehicle</button>
-                <button onclick="refreshStats()">Refresh Stats</button>
+                <button id="btnRefreshStats" onclick="refreshStats()">Refresh Stats</button>
                 <button onclick="goExit()">Vehicle Exit</button>
             </div>
         </div>
+    </div>
 
-        <script src="../Scripts/dashboard.js?v=<%= DateTime.Now.Ticks %>"></script>
+    <script src="../Scripts/dashboard.js?v=201"></script>
     </body>
 
     </html>
