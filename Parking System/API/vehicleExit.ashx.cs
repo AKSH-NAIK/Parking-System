@@ -12,7 +12,7 @@ namespace Parking_System.API
         private const decimal TwoWheelerRatePerHour = 30m;
         private const decimal FourWheelerRatePerHour = 100m;
 
-        private const string UpiId = "parking@upi";
+        private const string UpiId = "9867840585@upi";
         private const string UpiName = "Parking Fees";
 
         public void ProcessRequest(HttpContext context)
@@ -249,7 +249,7 @@ namespace Parking_System.API
         private string BuildUpiUri(decimal amount, string vehicleNumber)
         {
             string note = "Parking Fee - " + vehicleNumber;
-            return "upi://pay?pa=" + HttpUtility.UrlEncode(UpiId) +
+            return "upi://pay?pa=" + HttpUtility.UrlEncode(UpiId1) +
                    "&pn=" + HttpUtility.UrlEncode(UpiName) +
                    "&am=" + amount.ToString("0.00") +
                    "&cu=INR" +
@@ -292,5 +292,7 @@ namespace Parking_System.API
         {
             get { return false; }
         }
+
+        public static string UpiId1 => UpiId;
     }
 }
